@@ -10,8 +10,8 @@ export const CONFIG = {
   // real shared database. Get both from your Supabase project under
   // Settings → API. The anon key is safe to commit for an internal
   // tool like this.
-  SUPABASE_URL: "",
-  SUPABASE_ANON_KEY: "",
+  SUPABASE_URL: "https://ulaotlpkjsakytssfbco.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_V4AK2L-1JAda57NQwySzpw_6NnIsVZ7",
 
   // ── Team (first-run seed) ───────────────────────────────────
   // These profiles are created the first time the app loads. After
