@@ -101,9 +101,10 @@ h3 { font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
   display: flex; align-items: flex-start; justify-content: space-between;
   margin-bottom: 20px;
 }
-.wordmark { display: flex; align-items: center; gap: 7px; margin-top: 5px; }
-.wordmark svg { width: 15px; height: 15px; opacity: .8; }
-.wordmark span { font-size: 13px; color: var(--muted); font-weight: 500; }
+.wordmark { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
+.wordmark .by { font-size: 13px; color: var(--muted); font-weight: 500; }
+.wordmark .mlogo { width: 17px; height: 17px; display: block; }
+.wordmark .mword { font-size: 14px; color: var(--ink); font-weight: 700; letter-spacing: -.01em; }
 .avatar {
   width: 44px; height: 44px; border-radius: var(--pill);
   background: var(--ink); color: #fff;
