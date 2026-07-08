@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#E6E3DE" />
+<title>The Feast Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   The Feast Index — design system
+   Faithful to the mockups: brick-red accent, ivory page, white app
+   surface, bold clean sans. The lb/$ readout is the signature.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --bg:        #E6E3DE;   /* page behind the app column */
+  --surface:   #FFFFFF;   /* the app canvas */
+  --inset:     #F3F1ED;   /* soft cards, input fields */
+  --inset-2:   #ECE9E4;   /* pressed / secondary chips */
+  --ink:       #1B1A18;   /* primary text */
+  --ink-2:     #57544E;   /* secondary text */
+  --muted:     #928C82;   /* tertiary / captions */
+  --line:      #EAE7E1;   /* hairline dividers */
+
+  --red:       #C2473B;   /* primary accent */
+  --red-ink:   #A73A2F;   /* pressed accent */
+  --red-tint:  #F4E0DC;   /* faint accent wash */
+  --on-red:    #FBEDE9;   /* muted text on red */
+
+  --gold:      #C79A2E;
+  --gold-bg:   #EFE6C9;
+  --silver:    #9A9AA0;
+  --silver-bg: #E9E9EC;
+  --bronze:    #B06B3A;
+  --bronze-bg: #EEDFCF;
+
+  --r-lg: 26px;
+  --r-md: 18px;
+  --r-sm: 13px;
+  --pill: 999px;
+
+  --shadow: 0 24px 60px -28px rgba(30, 22, 18, .45);
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  justify-content: center;
+}
+button { -webkit-tap-highlight-color: transparent; }
+
+/* App column: phone-like on mobile, centered card on desktop */
+#app {
+  width: 100%;
+  max-width: 460px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--surface);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+/* Mobile is the base (full-bleed, edge to edge). On laptop/desktop the
+   same column becomes a centered, comfortably-sized app card. */
+@media (min-width: 520px) {
+  body { padding: 24px 20px; align-items: center; }
+  #app {
+    min-height: 0;
+    height: min(880px, calc(100vh - 48px));
+    height: min(880px, calc(100dvh - 48px));
+    max-width: 448px;
+    border-radius: 34px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+}
+
+/* Scrolling content region */
+#main {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 26px 22px 22px;
+  scrollbar-width: none;
+}
+#main::-webkit-scrollbar { display: none; }
+
+/* ── Type ──────────────────────────────────────────────────────── */
+h1 { font-size: 27px; font-weight: 800; letter-spacing: -.02em; line-height: 1.05; }
+h2 { font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+h3 { font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
+.eyebrow { font-size: 12.5px; font-weight: 600; color: var(--muted); }
+.dim { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ── App header ────────────────────────────────────────────────── */
+.app-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 20px;
+}
+.wordmark { display: flex; align-items: center; gap: 7px; margin-top: 5px; }
+.wordmark svg { width: 15px; height: 15px; opacity: .8; }
+.wordmark span { font-size: 13px; color: var(--muted); font-weight: 500; }
+.avatar {
+  width: 44px; height: 44px; border-radius: var(--pill);
+  background: var(--ink); color: #fff;
+  display: grid; place-items: center;
+  font-size: 14px; font-weight: 700; flex: none;
+  cursor: pointer; border: none;
+}
+
+/* ── Hero: this week's top pick ────────────────────────────────── */
+.hero {
+  background: var(--red); color: #fff;
+  border-radius: var(--r-lg); padding: 20px;
+  display: flex; gap: 16px; align-items: center;
+  margin-bottom: 14px;
+}
+.hero .glyph {
+  width: 62px; height: 62px; border-radius: var(--r-md); flex: none;
+  background: rgba(255,255,255,.16);
+  display: grid; place-items: center;
+}
+.hero .glyph svg { width: 30px; height: 30px; stroke: #fff; }
+.hero .k { font-size: 13px; color: var(--on-red); font-weight: 600; }
+.hero .v { font-size: 22px; font-weight: 800; letter-spacing: -.02em; margin: 3px 0 10px; }
+.hero .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.hero .pill {
+  background: rgba(255,255,255,.18); color: #fff;
+  padding: 5px 11px; border-radius: var(--pill);
+  font-size: 12.5px; font-weight: 600;
+}
+
+/* ── Milestone ─────────────────────────────────────────────────── */
+.milestone {
+  background: var(--inset); border-radius: var(--r-lg);
+  padding: 16px 18px; display: flex; align-items: center; gap: 14px;
+  margin-bottom: 26px;
+}
+.milestone .glyph {
+  width: 56px; height: 56px; border-radius: var(--r-md); flex: none;
+  background: var(--gold-bg); display: grid; place-items: center;
+}
+.milestone .glyph svg { width: 26px; height: 26px; stroke: var(--gold); }
+.milestone .body { flex: 1; }
+.milestone .row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 9px; }
+.milestone .row b { font-size: 14.5px; font-weight: 700; }
+.milestone .row .amt { font-size: 13px; color: var(--ink-2); font-weight: 600; }
+.track { height: 9px; background: #DED9D1; border-radius: var(--pill); overflow: hidden; }
+.track > i { display: block; height: 100%; background: var(--red); border-radius: var(--pill); transition: width .6s cubic-bezier(.2,.7,.2,1); }
+
+/* ── Section label ─────────────────────────────────────────────── */
+.section-label { margin: 0 0 13px; }
+
+/* ── Podium (top 3) ────────────────────────────────────────────── */
+.podium { display: grid; grid-template-columns: repeat(3,1fr); gap: 11px; margin-bottom: 22px; }
+.podium .cell {
+  background: var(--inset); border-radius: var(--r-md);
+  padding: 16px 10px; text-align: center; cursor: pointer;
+  border: 1px solid transparent; transition: border-color .15s, transform .15s;
+}
+.podium .cell:hover { transform: translateY(-2px); }
+.podium .medal {
+  width: 42px; height: 42px; border-radius: var(--pill); margin: 0 auto 10px;
+  display: grid; place-items: center;
+}
+.podium .medal svg { width: 20px; height: 20px; }
+.podium .m1 { background: var(--gold-bg); } .podium .m1 svg { stroke: var(--gold); }
+.podium .m2 { background: var(--silver-bg); } .podium .m2 svg { stroke: var(--silver); }
+.podium .m3 { background: var(--bronze-bg); } .podium .m3 svg { stroke: var(--bronze); }
+.podium .nm { font-size: 13.5px; font-weight: 700; line-height: 1.2; margin-bottom: 3px; }
+.podium .rt { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+
+/* ── Buttons ───────────────────────────────────────────────────── */
+.btn {
+  width: 100%; border: none; cursor: pointer; font-family: var(--font);
+  background: var(--red); color: #fff;
+  border-radius: var(--r-md); padding: 17px; font-size: 16px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; gap: 9px;
+  transition: background .15s, transform .05s;
+}
+.btn:hover { background: var(--red-ink); }
+.btn:active { transform: scale(.99); }
+.btn:disabled { background: #D9CFC9; color: #fff; cursor: not-allowed; }
+.btn svg { width: 20px; height: 20px; }
+.btn.ghost { background: var(--inset); color: var(--ink); }
+.btn.ghost:hover { background: var(--inset-2); }
+
+/* ── Bottom nav ────────────────────────────────────────────────── */
+.tabbar {
+  display: flex; border-top: 1px solid var(--line);
+  padding: 10px 6px calc(10px + env(safe-area-inset-bottom));
+  background: var(--surface); flex: none;
+}
+.tabbar button {
+  flex: 1; background: none; border: none; cursor: pointer; font-family: var(--font);
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  color: var(--muted); font-size: 11.5px; font-weight: 600; padding: 4px;
+}
+.tabbar button svg { width: 21px; height: 21px; }
+.tabbar button.active { color: var(--red); }
+
+/* ── Screen title row (Log / detail) ───────────────────────────── */
+.titlebar { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.iconbtn {
+  width: 38px; height: 38px; border-radius: var(--pill); border: none; cursor: pointer;
+  background: var(--inset); display: grid; place-items: center; flex: none;
+}
+.iconbtn:hover { background: var(--inset-2); }
+.iconbtn svg { width: 20px; height: 20px; stroke: var(--ink); }
+
+/* ── Form fields ───────────────────────────────────────────────── */
+.field { margin-bottom: 18px; }
+.field > label { display: block; font-size: 14px; font-weight: 600; color: var(--ink-2); margin-bottom: 9px; }
+.input-wrap { position: relative; display: flex; align-items: center; }
+.input-wrap .pre {
+  position: absolute; left: 15px; color: var(--muted);
+  display: grid; place-items: center; pointer-events: none;
+}
+.input-wrap .pre svg { width: 18px; height: 18px; stroke: var(--muted); }
+input.control {
+  width: 100%; font-family: var(--font); font-size: 16px; font-weight: 500; color: var(--ink);
+  background: var(--inset); border: 1.5px solid transparent; border-radius: var(--r-sm);
+  padding: 15px 15px;
+}
+input.control.has-pre { padding-left: 42px; }
+input.control::placeholder { color: var(--muted); font-weight: 500; }
+input.control:focus { outline: none; border-color: var(--red); background: #fff; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+
+/* matched / new place card */
+.place-strip {
+  display: flex; align-items: center; gap: 13px;
+  background: var(--inset); border-radius: var(--r-md); padding: 14px; margin-bottom: 18px;
+}
+.place-strip .thumb { width: 48px; height: 48px; border-radius: 13px; background: var(--red-tint); flex: none; }
+.place-strip .nm { font-size: 16px; font-weight: 700; }
+.place-strip .sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+/* name picker */
+.people { display: flex; gap: 9px; flex-wrap: wrap; }
+.person {
+  display: flex; align-items: center; gap: 8px; cursor: pointer;
+  background: var(--inset); border: 1.5px solid transparent; border-radius: var(--pill);
+  padding: 7px 15px 7px 7px; font-family: var(--font); font-size: 15px; font-weight: 600; color: var(--ink-2);
+}
+.person .ini {
+  width: 30px; height: 30px; border-radius: var(--pill); background: var(--inset-2);
+  display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--ink-2);
+}
+.person.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.person.on .ini { background: var(--red); color: #fff; }
+
+/* tag chips */
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  cursor: pointer; font-family: var(--font); font-size: 13.5px; font-weight: 600;
+  background: var(--inset); color: var(--ink-2); border: 1.5px solid transparent;
+  border-radius: var(--pill); padding: 8px 14px;
+}
+.chip.on { background: var(--red); color: #fff; border-color: var(--red); }
+.chip.readonly { cursor: default; background: var(--inset); color: var(--ink-2); }
+
+/* live ratio readout — the signature element */
+.readout {
+  background: var(--inset); border-radius: var(--r-md);
+  padding: 18px; text-align: center; margin-bottom: 20px;
+}
+.readout .k { font-size: 13px; color: var(--muted); font-weight: 600; }
+.readout .v {
+  font-size: 40px; font-weight: 800; letter-spacing: -.03em; margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.readout .v small { font-size: 18px; font-weight: 700; color: var(--muted); margin-left: 4px; letter-spacing: 0; }
+.readout .grade { display: inline-block; margin-top: 8px; }
+
+/* grade badge */
+.gbadge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12.5px; font-weight: 700; border-radius: var(--pill);
+  padding: 4px 11px; background: var(--gold-bg); color: var(--gold);
+}
+
+/* ── Library ───────────────────────────────────────────────────── */
+.filterbar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 16px; scrollbar-width: none; }
+.filterbar::-webkit-scrollbar { display: none; }
+.filterbar .chip { flex: none; }
+.sortrow { display: flex; gap: 8px; margin-bottom: 16px; }
+.seg {
+  flex: 1; cursor: pointer; font-family: var(--font); font-size: 13px; font-weight: 600;
+  background: var(--inset); color: var(--ink-2); border: none; border-radius: var(--r-sm); padding: 10px;
+}
+.seg.on { background: var(--ink); color: #fff; }
+
+.place-card {
+  display: flex; align-items: center; gap: 14px; cursor: pointer;
+  padding: 15px 4px; border-bottom: 1px solid var(--line);
+}
+.place-card:last-child { border-bottom: none; }
+.place-card .rank { width: 24px; text-align: center; font-size: 14px; font-weight: 700; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.place-card .thumb { width: 46px; height: 46px; border-radius: 13px; background: var(--red-tint); flex: none; }
+.place-card .body { flex: 1; min-width: 0; }
+.place-card .nm { font-size: 15.5px; font-weight: 700; }
+.place-card .meta { font-size: 12.5px; color: var(--muted); margin-top: 3px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.place-card .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
+.place-card .ratio { text-align: right; flex: none; }
+.place-card .ratio b { font-size: 17px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.place-card .ratio span { display: block; font-size: 11px; color: var(--muted); font-weight: 600; }
+
+/* ── Detail ────────────────────────────────────────────────────── */
+.detail-hero { text-align: center; margin-bottom: 22px; }
+.detail-hero .thumb { width: 68px; height: 68px; border-radius: 20px; background: var(--red-tint); margin: 0 auto 14px; }
+.detail-hero h1 { margin-bottom: 8px; }
+.detail-hero .taglist { display: flex; gap: 7px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+.detail-hero .biglink { font-size: 13px; color: var(--red); font-weight: 600; text-decoration: none; }
+
+.statgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 11px; margin-bottom: 24px; }
+.statgrid .cell { background: var(--inset); border-radius: var(--r-md); padding: 15px 8px; text-align: center; }
+.statgrid .v { font-size: 21px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.statgrid .k { font-size: 11.5px; color: var(--muted); font-weight: 600; margin-top: 4px; }
+
+.stars { display: flex; gap: 6px; justify-content: center; margin: 6px 0 4px; }
+.stars button { background: none; border: none; cursor: pointer; padding: 2px; }
+.stars svg { width: 30px; height: 30px; }
+.stars .on svg { fill: var(--gold); stroke: var(--gold); }
+.stars .off svg { fill: none; stroke: #D2CCC3; }
+
+.order-row { display: flex; align-items: center; gap: 12px; padding: 13px 2px; border-bottom: 1px solid var(--line); }
+.order-row:last-child { border-bottom: none; }
+.order-row .ini { width: 34px; height: 34px; border-radius: var(--pill); background: var(--inset-2); display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--ink-2); flex: none; }
+.order-row .body { flex: 1; }
+.order-row .body b { font-size: 14px; font-weight: 600; }
+.order-row .body .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.order-row .r { font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; }
+
+/* ── Stats screen ──────────────────────────────────────────────── */
+.bigstat { background: var(--red); color: #fff; border-radius: var(--r-lg); padding: 22px; margin-bottom: 14px; text-align: center; }
+.bigstat .v { font-size: 46px; font-weight: 800; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.bigstat .v small { font-size: 20px; color: var(--on-red); margin-left: 5px; }
+.bigstat .k { font-size: 13px; color: var(--on-red); font-weight: 600; margin-top: 2px; }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; margin-bottom: 24px; }
+.duo .cell { background: var(--inset); border-radius: var(--r-md); padding: 18px; text-align: center; }
+.duo .v { font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.duo .k { font-size: 12.5px; color: var(--muted); font-weight: 600; margin-top: 3px; }
+
+.lead-row { display: flex; align-items: center; gap: 13px; padding: 14px 2px; border-bottom: 1px solid var(--line); }
+.lead-row:last-child { border-bottom: none; }
+.lead-row .ini { width: 38px; height: 38px; border-radius: var(--pill); background: var(--ink); color: #fff; display: grid; place-items: center; font-size: 13px; font-weight: 700; flex: none; }
+.lead-row .body { flex: 1; }
+.lead-row .body b { font-size: 15px; font-weight: 700; }
+.lead-row .body .sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.lead-row .amt { text-align: right; }
+.lead-row .amt b { font-size: 16px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.lead-row .amt span { display: block; font-size: 11px; color: var(--muted); font-weight: 600; }
+
+/* ── Profile ───────────────────────────────────────────────────── */
+.profile-head { text-align: center; margin-bottom: 26px; }
+.profile-head .big { width: 78px; height: 78px; border-radius: var(--pill); background: var(--ink); color: #fff; display: grid; place-items: center; font-size: 26px; font-weight: 800; margin: 0 auto 14px; }
+.profile-head h1 { margin-bottom: 4px; }
+
+.row-between { display: flex; align-items: center; justify-content: space-between; margin-bottom: 13px; }
+
+/* ── Badges ────────────────────────────────────────────────────── */
+.badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+.badge { background: var(--inset); border-radius: var(--r-md); padding: 15px 8px 13px; text-align: center; }
+.badge .ic {
+  width: 46px; height: 46px; border-radius: var(--pill); margin: 0 auto 9px;
+  display: grid; place-items: center; background: var(--inset-2); color: #C0B9AE;
+}
+.badge .ic svg { width: 23px; height: 23px; stroke: currentColor; fill: none; }
+.badge .bn { font-size: 12.5px; font-weight: 700; line-height: 1.15; }
+.badge .bs { font-size: 11px; font-weight: 600; color: var(--muted); margin-top: 3px; }
+.badge.locked { opacity: .82; }
+.badge.earned.gold   .ic { background: var(--gold-bg);   color: var(--gold); }
+.badge.earned.silver .ic { background: var(--silver-bg); color: var(--silver); }
+.badge.earned.bronze .ic { background: var(--bronze-bg); color: var(--bronze); }
+.badge.earned.red    .ic { background: var(--red-tint);  color: var(--red); }
+.badge.earned .bs { color: var(--ink-2); }
+.badge .btrack { height: 5px; background: #DED9D1; border-radius: var(--pill); overflow: hidden; margin-top: 9px; }
+.badge .btrack > i { display: block; height: 100%; background: var(--muted); border-radius: var(--pill); }
+
+/* ── Create profile ────────────────────────────────────────────── */
+.person.newp { background: #fff; border: 1.5px dashed #D8D3CB; color: var(--ink-2); }
+.person.newp .ini { background: var(--inset); color: var(--ink-2); font-weight: 700; }
+.create { background: var(--inset); border-radius: var(--r-md); padding: 16px; margin-top: 14px; }
+.swatches { display: flex; gap: 11px; margin: 11px 0 16px; }
+.swatch { width: 34px; height: 34px; border-radius: var(--pill); cursor: pointer; border: 3px solid transparent; padding: 0; }
+.swatch.on { border-color: var(--ink); }
+
+/* ── Small grade pill (podium + library) ───────────────────────── */
+.gbadge.sm { font-size: 11px; padding: 2px 9px; }
+.place-card .ratio { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+
+/* ── Empty state ───────────────────────────────────────────────── */
+.empty { text-align: center; padding: 50px 20px; }
+.empty .glyph { width: 64px; height: 64px; border-radius: 20px; background: var(--inset); display: grid; place-items: center; margin: 0 auto 18px; }
+.empty .glyph svg { width: 30px; height: 30px; stroke: var(--muted); }
+.empty h3 { margin-bottom: 6px; }
+.empty p { font-size: 14px; color: var(--muted); line-height: 1.5; max-width: 260px; margin: 0 auto; }
+
+/* ── Toast ─────────────────────────────────────────────────────── */
+#toast {
+  position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(20px);
+  background: var(--ink); color: #fff; padding: 13px 20px; border-radius: var(--pill);
+  font-size: 14px; font-weight: 600; opacity: 0; pointer-events: none;
+  transition: opacity .25s, transform .25s; z-index: 50; box-shadow: var(--shadow);
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* demo badge */
+.demo-flag {
+  font-size: 11px; font-weight: 700; color: var(--red); background: var(--red-tint);
+  padding: 3px 9px; border-radius: var(--pill); letter-spacing: .02em;
+}
+
+.section-gap { margin-top: 28px; }
+
+/* Very narrow phones */
+@media (max-width: 360px) {
+  #main { padding: 22px 16px 18px; }
+  h1 { font-size: 24px; }
+  .podium .cell { padding: 14px 6px; }
+  .readout .v { font-size: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+</style>
+</head>
+<body>
+<div id="app">
+<main id="main" aria-live="polite"></main>
+<nav id="tabbar" class="tabbar"></nav>
+</div>
+<div id="toast" role="status"></div>
+<script>
+// ─────────────────────────────────────────────────────────────
+//  The Feast Index — configuration
+//  Edit the values below. Everything the team-specific lives here.
+// ─────────────────────────────────────────────────────────────
+
+const CONFIG = {
+  // ── Supabase ────────────────────────────────────────────────
+  // Leave these blank to run in DEMO MODE (in-memory sample data,
+  // resets on refresh, not shared). Fill them in to switch to your
+  // real shared database. Get both from your Supabase project under
+  // Settings → API. The anon key is safe to commit for an internal
+  // tool like this.
+  SUPABASE_URL: "",
+  SUPABASE_ANON_KEY: "",
+
+  // ── Team (first-run seed) ───────────────────────────────────
+  // These profiles are created the first time the app loads. After
+  // that, profiles are added and picked inside the app (Profile tab),
+  // so you don't need to edit this list to add a teammate.
+  TEAM: [
+    { name: "Tim",   accent: "#C2473B" },
+    { name: "Jamie", accent: "#4B6EA8" },
+    { name: "Raj",   accent: "#6E8B5B" },
+  ],
+
+  // ── Tags ────────────────────────────────────────────────────
+  // Fixed list picked when a place is first added.
+  TAGS: [
+    "Wings", "Tacos", "Burgers", "Sandwiches", "Pizza", "Bowls",
+    "Sushi/Poke", "Chinese", "Indian", "Mexican", "Fried Chicken",
+    "Salads", "BBQ", "Noodles/Ramen",
+  ],
+
+  // ── Team milestone ──────────────────────────────────────────
+  // Cumulative pounds the team is chasing (drives the Home bar).
+  MILESTONE_GOAL_LBS: 200,
+
+  // ── Grades ──────────────────────────────────────────────────
+  // Ratio (lb/$) thresholds, highest first. First match wins.
+  GRADES: [
+    { min: 0.40, label: "A+" },
+    { min: 0.33, label: "A" },
+    { min: 0.27, label: "B" },
+    { min: 0.20, label: "C" },
+    { min: 0.00, label: "D" },
+  ],
+};
+
+/* ═══════════════════════════════════════════════════════════════
+   The Feast Index — app logic
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Icons (feather-ish) ──────────────────────────────────────── */
+const I = {
+  flame: `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>`,
+  trophy: `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`,
+  medal: `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15"/><path d="M11 12 5.12 2.2"/><path d="m13 12 5.88-9.8"/><path d="M8 7h8"/><circle cx="12" cy="17" r="5"/><path d="M12 18v-2h-.5"/></svg>`,
+  plus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>`,
+  home: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>`,
+  list: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>`,
+  bars: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6" rx="1"/><rect x="12" y="8" width="3" height="10" rx="1"/><rect x="17" y="4" width="3" height="14" rx="1"/></svg>`,
+  user: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>`,
+  back: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>`,
+  link: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
+  dollar: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+  star: `<svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linejoin="round"><path d="M12 2.5l2.9 5.9 6.5.95-4.7 4.58 1.11 6.47L12 17.9l-5.81 3.06 1.1-6.47L2.6 9.9l6.5-.95z"/></svg>`,
+  scale: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-2 1.5-4 1.5-6 0Z"/><path d="m2 16 3-8 3 8c-2 1.5-4 1.5-6 0Z"/><path d="M7 21h10M12 3v18M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>`,
+  repeat: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>`,
+  compass: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`,
+  crown: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.56 3.27a.5.5 0 0 1 .88 0l2.95 5.6a1 1 0 0 0 1.52.3l4.27-3.67a.5.5 0 0 1 .8.52l-2.83 10.25a1 1 0 0 1-.96.73H5.81a1 1 0 0 1-.96-.73L2.02 6.02a.5.5 0 0 1 .8-.52l4.27 3.67a1 1 0 0 0 1.52-.3z"/><path d="M5 21h14"/></svg>`,
+};
+
+/* ── Utils ────────────────────────────────────────────────────── */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const initials = (n) => n.trim().split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+const money = (n) => "$" + Number(n).toFixed(2);
+const ratioStr = (r) => (r > 0 ? r.toFixed(2) : "—");
+const uid = () => (crypto.randomUUID ? crypto.randomUUID() : "id-" + Math.random().toString(36).slice(2));
+
+function storeSlug(u) {
+  if (!u) return "";
+  const m = String(u).match(/store\/([^/?#]+)/i);
+  let s = m ? m[1] : String(u).trim().split(/[/?#]/).pop();
+  return s.toLowerCase().replace(/-[a-f0-9]{6,}$/, "").replace(/-\d+$/, "");
+}
+const prettifySlug = (slug) => slug.split("-").filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join(" ");
+
+function gradeFor(ratio) {
+  if (!(ratio > 0)) return null;
+  return (CONFIG.GRADES.find((g) => ratio >= g.min) || CONFIG.GRADES[CONFIG.GRADES.length - 1]).label;
+}
+
+/* ── Accents & persistence ────────────────────────────────────── */
+const ACCENTS = ["#C2473B", "#C79A2E", "#6E8B5B", "#4B6EA8", "#8A5A8C"];
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch { /* sandbox: ignore */ } },
+};
+const accentOf = (name) => DATA.people.find((p) => p.name === name)?.accent || "var(--ink)";
+
+/* ── Per-person aggregation (for badges & profile) ────────────── */
+function personAgg(name, data) {
+  const os = data.orders.filter((o) => o.person_name === name);
+  const totalW = os.reduce((s, o) => s + Number(o.weight_lbs), 0);
+  const totalP = os.reduce((s, o) => s + Number(o.price), 0);
+  const places = new Set(os.map((o) => o.place_id));
+  let founded = 0;
+  for (const pid of places) {
+    const po = data.orders.filter((o) => o.place_id === pid).sort((a, b) => new Date(a.ordered_at) - new Date(b.ordered_at));
+    if (po[0] && po[0].person_name === name) founded++;
+  }
+  const ratings = data.ratings.filter((r) => r.person_name === name).length;
+  const bestRatio = os.reduce((m, o) => Math.max(m, Number(o.price) > 0 ? Number(o.weight_lbs) / Number(o.price) : 0), 0);
+  return { orderCount: os.length, totalW, totalP, places: places.size, founded, ratings, bestRatio };
+}
+
+function weightRankOf(name, data) {
+  const by = {};
+  for (const o of data.orders) by[o.person_name] = (by[o.person_name] || 0) + Number(o.weight_lbs);
+  const sorted = Object.entries(by).sort((a, b) => b[1] - a[1]).map((x) => x[0]);
+  const i = sorted.indexOf(name);
+  return i < 0 ? null : i + 1;
+}
+
+const BADGES = [
+  { id: "first",   name: "First Bite",     icon: I.flame,   tier: "bronze", desc: "Log your first order",                calc: (a) => ({ cur: a.orderCount, goal: 1 }) },
+  { id: "bargain", name: "Bargain Hunter", icon: I.dollar,  tier: "red",    desc: "Log an A+ order (0.40+ lb/$)",        calc: (a) => ({ cur: a.bestRatio >= 0.40 ? 1 : 0, goal: 1, display: a.bestRatio > 0 ? a.bestRatio.toFixed(2) + " best" : "—" }) },
+  { id: "scout",   name: "Scout",          icon: I.compass, tier: "bronze", desc: "Add 3 new places to the index",       calc: (a) => ({ cur: a.founded, goal: 3 }) },
+  { id: "critic",  name: "Critic",         icon: I.star,    tier: "red",    desc: "Rate 3 places",                       calc: (a) => ({ cur: a.ratings, goal: 3 }) },
+  { id: "regular", name: "Regular",        icon: I.repeat,  tier: "silver", desc: "Log 5 orders",                        calc: (a) => ({ cur: a.orderCount, goal: 5 }) },
+  { id: "heavy",   name: "Heavyweight",    icon: I.scale,   tier: "silver", desc: "Log 50 lbs total",                    calc: (a) => ({ cur: Math.round(a.totalW), goal: 50 }) },
+  { id: "master",  name: "Feast Master",   icon: I.trophy,  tier: "gold",   desc: "Log 15 orders",                       calc: (a) => ({ cur: a.orderCount, goal: 15 }) },
+  { id: "mvp",     name: "Team MVP",       icon: I.crown,   tier: "gold",   desc: "Log the most pounds on the team",     rank: true },
+];
+
+function evalBadge(b, agg, ctx) {
+  if (b.rank) { const r = ctx.rank; return { earned: r === 1, sub: r ? "#" + r + " on team" : "—", pct: 0 }; }
+  const { cur, goal, display } = b.calc(agg);
+  const earned = cur >= goal;
+  const pct = Math.min(100, (cur / goal) * 100);
+  const sub = earned ? "Earned" : (display != null ? display : cur + " / " + goal);
+  return { earned, sub, pct };
+}
+
+/* ── Data layer ───────────────────────────────────────────────── */
+const isLive = Boolean(CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY);
+
+function makeDemoDB() {
+  const daysAgo = (d) => new Date(Date.now() - d * 864e5).toISOString();
+  const P = [
+    { id: "p1", name: "Ork Wings",   doordash_url: "https://doordash.com/store/ork-wings-brooklyn-10293", tags: ["Wings", "Fried Chicken"], created_at: daysAgo(24) },
+    { id: "p2", name: "Golden Bowl",  doordash_url: "https://doordash.com/store/golden-bowl-nyc-88120",    tags: ["Bowls"],                  created_at: daysAgo(21) },
+    { id: "p3", name: "Taco Loop",    doordash_url: "https://doordash.com/store/taco-loop-brooklyn-55010", tags: ["Tacos", "Mexican"],       created_at: daysAgo(19) },
+    { id: "p4", name: "Ork",          doordash_url: "https://doordash.com/store/ork-brooklyn-33915",       tags: ["Sandwiches"],             created_at: daysAgo(12) },
+    { id: "p5", name: "Dragon Wok",   doordash_url: "https://doordash.com/store/dragon-wok-nyc-20417",     tags: ["Chinese"],                created_at: daysAgo(9) },
+    { id: "p6", name: "Slice House",  doordash_url: "https://doordash.com/store/slice-house-bk-71188",     tags: ["Pizza"],                  created_at: daysAgo(6) },
+    { id: "p7", name: "Green Leaf",   doordash_url: "https://doordash.com/store/green-leaf-nyc-40122",     tags: ["Salads"],                 created_at: daysAgo(3) },
+  ];
+  const O = [
+    { place_id: "p1", person_name: "Tim",   price: 38.50, weight_lbs: 15.8, ordered_at: daysAgo(24) },
+    { place_id: "p1", person_name: "Raj",   price: 42.00, weight_lbs: 17.0, ordered_at: daysAgo(4) },
+    { place_id: "p2", person_name: "Jamie", price: 45.00, weight_lbs: 14.8, ordered_at: daysAgo(21) },
+    { place_id: "p2", person_name: "Tim",   price: 30.00, weight_lbs: 10.0, ordered_at: daysAgo(7) },
+    { place_id: "p3", person_name: "Raj",   price: 34.00, weight_lbs: 9.9,  ordered_at: daysAgo(19) },
+    { place_id: "p3", person_name: "Jamie", price: 28.00, weight_lbs: 8.0,  ordered_at: daysAgo(5) },
+    { place_id: "p4", person_name: "Tim",   price: 38.50, weight_lbs: 4.2,  ordered_at: daysAgo(12) },
+    { place_id: "p5", person_name: "Jamie", price: 52.00, weight_lbs: 12.0, ordered_at: daysAgo(9) },
+    { place_id: "p5", person_name: "Raj",   price: 40.00, weight_lbs: 9.5,  ordered_at: daysAgo(2) },
+    { place_id: "p6", person_name: "Tim",   price: 33.00, weight_lbs: 8.5,  ordered_at: daysAgo(6) },
+    { place_id: "p7", person_name: "Jamie", price: 26.00, weight_lbs: 3.1,  ordered_at: daysAgo(3) },
+  ].map((o) => ({ id: uid(), ...o }));
+  const R = [
+    { place_id: "p1", person_name: "Tim", score: 5 }, { place_id: "p1", person_name: "Raj", score: 5 }, { place_id: "p1", person_name: "Jamie", score: 4 },
+    { place_id: "p2", person_name: "Jamie", score: 4 }, { place_id: "p2", person_name: "Tim", score: 5 },
+    { place_id: "p3", person_name: "Raj", score: 4 }, { place_id: "p3", person_name: "Jamie", score: 3 },
+    { place_id: "p4", person_name: "Tim", score: 3 },
+    { place_id: "p5", person_name: "Jamie", score: 4 },
+    { place_id: "p6", person_name: "Tim", score: 5 },
+    { place_id: "p7", person_name: "Jamie", score: 2 },
+  ].map((r) => ({ id: uid(), created_at: daysAgo(2), ...r }));
+
+  const PEOPLE = CONFIG.TEAM.map((m, i) => ({ id: uid(), name: m.name, accent: m.accent || ACCENTS[i % ACCENTS.length], created_at: daysAgo(30) }));
+
+  return {
+    live: false,
+    async getData() { return { places: [...P], orders: [...O], ratings: [...R], people: [...PEOPLE] }; },
+    async addPerson({ name, accent }) { const rec = { id: uid(), name, accent, created_at: new Date().toISOString() }; PEOPLE.push(rec); return rec; },
+    async addPlace(p) { const rec = { id: uid(), created_at: new Date().toISOString(), ...p }; P.push(rec); return rec; },
+    async addOrder(o) { const rec = { id: uid(), ordered_at: new Date().toISOString(), ...o }; O.push(rec); return rec; },
+    async upsertRating({ place_id, person_name, score }) {
+      const ex = R.find((r) => r.place_id === place_id && r.person_name === person_name);
+      if (ex) { ex.score = score; return ex; }
+      const rec = { id: uid(), created_at: new Date().toISOString(), place_id, person_name, score };
+      R.push(rec); return rec;
+    },
+  };
+}
+
+async function makeSupabaseDB() {
+  const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+  const sb = createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+  return {
+    live: true,
+    async getData() {
+      const [p, o, r, pe] = await Promise.all([
+        sb.from("places").select("*"),
+        sb.from("orders").select("*"),
+        sb.from("ratings").select("*"),
+        sb.from("people").select("*"),
+      ]);
+      for (const res of [p, o, r, pe]) if (res.error) throw res.error;
+      let people = pe.data;
+      if (!people.length) {
+        const seed = CONFIG.TEAM.map((m, i) => ({ name: m.name, accent: m.accent || ACCENTS[i % ACCENTS.length] }));
+        const { data: seeded, error } = await sb.from("people").insert(seed).select();
+        if (error) throw error;
+        people = seeded;
+      }
+      return { places: p.data, orders: o.data, ratings: r.data, people };
+    },
+    async addPerson({ name, accent }) { const { data, error } = await sb.from("people").insert({ name, accent }).select().single(); if (error) throw error; return data; },
+    async addPlace(p) { const { data, error } = await sb.from("places").insert(p).select().single(); if (error) throw error; return data; },
+    async addOrder(o) { const { data, error } = await sb.from("orders").insert(o).select().single(); if (error) throw error; return data; },
+    async upsertRating(r) { const { data, error } = await sb.from("ratings").upsert(r, { onConflict: "place_id,person_name" }).select().single(); if (error) throw error; return data; },
+  };
+}
+
+/* ── Aggregation ──────────────────────────────────────────────── */
+function computeStats(place, orders, ratings) {
+  const os = orders.filter((o) => o.place_id === place.id);
+  const rs = ratings.filter((r) => r.place_id === place.id);
+  const totalW = os.reduce((s, o) => s + Number(o.weight_lbs), 0);
+  const totalP = os.reduce((s, o) => s + Number(o.price), 0);
+  const ratio = totalP > 0 ? totalW / totalP : 0;
+  const avg = rs.length ? rs.reduce((s, r) => s + r.score, 0) / rs.length : 0;
+  return { orders: os, ratings: rs, totalW, totalP, ratio, orderCount: os.length, avgRating: avg, ratingCount: rs.length };
+}
+
+function rankedPlaces(data) {
+  return data.places
+    .map((p) => ({ place: p, s: computeStats(p, data.orders, data.ratings) }))
+    .filter((x) => x.s.orderCount > 0)
+    .sort((a, b) => b.s.ratio - a.s.ratio);
+}
+
+/* ── App state ────────────────────────────────────────────────── */
+let DB = null;
+let DATA = { places: [], orders: [], ratings: [], people: [] };
+let currentUser = CONFIG.TEAM[0]?.name || "Guest";
+let tab = "home";
+const view = { name: "home", placeId: null };
+const lib = { tag: null, sort: "ratio" };
+const profileUI = { creating: false, newName: "", newAccent: ACCENTS[0] };
+const logState = { link: "", matchedId: null, newName: "", newTags: [], price: "", weight: "", person: currentUser };
+
+const main = $("#main");
+const tabbarEl = $("#tabbar");
+
+async function refresh() { DATA = await DB.getData(); }
+
+/* ── Toast ────────────────────────────────────────────────────── */
+let toastTimer;
+function toast(msg) {
+  const t = $("#toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
+}
+
+/* ── Navigation ───────────────────────────────────────────────── */
+function go(name, opts = {}) {
+  view.name = name;
+  if (opts.placeId !== undefined) view.placeId = opts.placeId;
+  if (["home", "library", "stats", "profile"].includes(name)) tab = name;
+  render();
+}
+
+function renderTabbar() {
+  const tabs = [["home", "Home", I.home], ["library", "Library", I.list], ["stats", "Stats", I.bars], ["profile", "Profile", I.user]];
+  tabbarEl.innerHTML = tabs.map(([id, label, icon]) =>
+    `<button data-tab="${id}" class="${tab === id ? "active" : ""}">${icon}<span>${label}</span></button>`
+  ).join("");
+  tabbarEl.querySelectorAll("button").forEach((b) => b.onclick = () => go(b.dataset.tab));
+}
+
+/* ── Screens ──────────────────────────────────────────────────── */
+function screenHome() {
+  const ranked = rankedPlaces(DATA);
+  const top = ranked[0];
+  const top3 = ranked.slice(0, 3);
+  const totalW = DATA.orders.reduce((s, o) => s + Number(o.weight_lbs), 0);
+  const goal = CONFIG.MILESTONE_GOAL_LBS;
+  const pct = Math.min(100, (totalW / goal) * 100);
+
+  const hero = top ? `
+    <div class="hero">
+      <div class="glyph">${I.flame}</div>
+      <div>
+        <div class="k">This week's top pick</div>
+        <div class="v">${esc(top.place.name)}</div>
+        <div class="pills">
+          <span class="pill num">${ratioStr(top.s.ratio)} lb/$</span>
+          <span class="pill">Grade ${gradeFor(top.s.ratio)}</span>
+        </div>
+      </div>
+    </div>` : "";
+
+  const medalClass = ["m1", "m2", "m3"];
+  const podium = top3.length ? `
+    <h2 class="section-label">Top 3 this month</h2>
+    <div class="podium">
+      ${top3.map((x, i) => `
+        <div class="cell" data-place="${x.place.id}">
+          <div class="medal ${medalClass[i]}">${I.medal}</div>
+          <div class="nm">${esc(x.place.name)}</div>
+          <div class="rt num">${ratioStr(x.s.ratio)} lb/$</div>
+          <div style="margin-top:7px"><span class="gbadge sm">${gradeFor(x.s.ratio)}</span></div>
+        </div>`).join("")}
+    </div>` : "";
+
+  main.innerHTML = `
+    <div class="app-head">
+      <div>
+        <h1>The Feast Index</h1>
+        <div class="wordmark">${I.scale}<span>by merge.dev</span></div>
+      </div>
+      <button class="avatar" data-tab="profile" style="background:${accentOf(currentUser)}">${esc(initials(currentUser))}</button>
+    </div>
+    ${DB.live ? "" : `<div style="margin-bottom:14px"><span class="demo-flag">DEMO DATA</span></div>`}
+    ${hero || emptyBlock("No orders yet", "Log your first team dinner to start the ranking.")}
+    <div class="milestone">
+      <div class="glyph">${I.trophy}</div>
+      <div class="body">
+        <div class="row"><b>Team milestone</b><span class="amt num">${totalW.toFixed(0)} / ${goal} lbs</span></div>
+        <div class="track"><i style="width:${pct}%"></i></div>
+      </div>
+    </div>
+    ${podium}
+    <button class="btn" id="logBtn">${I.plus} Log an order</button>`;
+
+  main.querySelectorAll("[data-place]").forEach((n) => n.onclick = () => go("detail", { placeId: n.dataset.place }));
+  main.querySelector("[data-tab='profile']").onclick = () => go("profile");
+  $("#logBtn", main).onclick = openLog;
+}
+
+function screenLog() {
+  const slug = storeSlug(logState.link);
+  const matched = slug ? DATA.places.find((p) => storeSlug(p.doordash_url) === slug) : null;
+  logState.matchedId = matched ? matched.id : null;
+
+  let placeBlock = "";
+  if (logState.link.trim()) {
+    if (matched) {
+      placeBlock = `<div class="place-strip"><div class="thumb"></div><div><div class="nm">${esc(matched.name)}</div><div class="sub">Matched to existing place</div></div></div>`;
+    } else {
+      if (!logState.newName) logState.newName = prettifySlug(slug);
+      placeBlock = `
+        <div class="place-strip"><div class="thumb"></div><div><div class="nm">New place</div><div class="sub">Add the details below</div></div></div>
+        <div class="field"><label>Place name</label>
+          <div class="input-wrap"><input class="control" id="newName" value="${esc(logState.newName)}" placeholder="Restaurant name"/></div></div>
+        <div class="field"><label>Tags</label>
+          <div class="chips">${CONFIG.TAGS.map((t) => `<button class="chip ${logState.newTags.includes(t) ? "on" : ""}" data-tag="${esc(t)}">${esc(t)}</button>`).join("")}</div></div>`;
+    }
+  }
+
+  const price = parseFloat(logState.price), weight = parseFloat(logState.weight);
+  const ratio = price > 0 && weight > 0 ? weight / price : 0;
+  const ready = (matched || (logState.newName.trim() && logState.newTags.length)) && ratio > 0 && logState.person;
+
+  main.innerHTML = `
+    <div class="titlebar">
+      <button class="iconbtn" id="back">${I.back}</button>
+      <h1 style="font-size:22px">Log an order</h1>
+    </div>
+    <div class="field"><label>DoorDash link</label>
+      <div class="input-wrap"><span class="pre">${I.link}</span>
+        <input class="control has-pre" id="link" value="${esc(logState.link)}" placeholder="doordash.com/store/…"/></div></div>
+    ${placeBlock}
+    <div class="two-col">
+      <div class="field"><label>Total price</label>
+        <div class="input-wrap"><span class="pre">${I.dollar}</span>
+          <input class="control has-pre num" id="price" inputmode="decimal" value="${esc(logState.price)}" placeholder="0.00"/></div></div>
+      <div class="field"><label>Weight (lb)</label>
+        <div class="input-wrap"><input class="control num" id="weight" inputmode="decimal" value="${esc(logState.weight)}" placeholder="0.0"/></div></div>
+    </div>
+    <div class="field"><label>Who's logging this</label>
+      <div class="people">${DATA.people.map((m) =>
+        `<button class="person ${logState.person === m.name ? "on" : ""}" data-person="${esc(m.name)}"><span class="ini">${esc(initials(m.name))}</span>${esc(m.name)}</button>`).join("")}</div></div>
+    <div class="readout">
+      <div class="k">This order's ratio</div>
+      <div class="v num">${ratio > 0 ? ratio.toFixed(2) : "—"}<small>lb/$</small></div>
+      ${ratio > 0 ? `<div class="grade"><span class="gbadge">Grade ${gradeFor(ratio)}</span></div>` : ""}
+    </div>
+    <button class="btn" id="save" ${ready ? "" : "disabled"}>Save order</button>`;
+
+  const rerender = () => screenLog();
+  $("#back", main).onclick = () => go(tab);
+  const link = $("#link", main);
+  link.oninput = (e) => { logState.link = e.target.value; logState.newName = ""; screenLog(); $("#link", main).focus(); };
+  $("#price", main).oninput = (e) => { logState.price = e.target.value; updateReadout(); };
+  $("#weight", main).oninput = (e) => { logState.weight = e.target.value; updateReadout(); };
+  const nn = $("#newName", main); if (nn) nn.oninput = (e) => { logState.newName = e.target.value; toggleSave(); };
+  main.querySelectorAll("[data-tag]").forEach((c) => c.onclick = () => {
+    const t = c.dataset.tag;
+    logState.newTags = logState.newTags.includes(t) ? logState.newTags.filter((x) => x !== t) : [...logState.newTags, t];
+    c.classList.toggle("on"); toggleSave();
+  });
+  main.querySelectorAll("[data-person]").forEach((b) => b.onclick = () => {
+    logState.person = b.dataset.person;
+    main.querySelectorAll("[data-person]").forEach((x) => x.classList.toggle("on", x === b));
+    toggleSave();
+  });
+  $("#save", main).onclick = saveOrder;
+
+  function updateReadout() {
+    const p = parseFloat(logState.price), w = parseFloat(logState.weight);
+    const r = p > 0 && w > 0 ? w / p : 0;
+    const ro = main.querySelector(".readout");
+    ro.querySelector(".v").innerHTML = `${r > 0 ? r.toFixed(2) : "—"}<small>lb/$</small>`;
+    let g = ro.querySelector(".grade");
+    if (r > 0) { if (!g) { g = document.createElement("div"); g.className = "grade"; ro.appendChild(g); } g.innerHTML = `<span class="gbadge">Grade ${gradeFor(r)}</span>`; }
+    else if (g) g.remove();
+    toggleSave();
+  }
+  function toggleSave() {
+    const p = parseFloat(logState.price), w = parseFloat(logState.weight);
+    const ok = (logState.matchedId || (logState.newName.trim() && logState.newTags.length)) && p > 0 && w > 0 && logState.person;
+    $("#save", main).disabled = !ok;
+  }
+}
+
+async function saveOrder() {
+  const btn = $("#save", main); btn.disabled = true; btn.textContent = "Saving…";
+  try {
+    let placeId = logState.matchedId;
+    if (!placeId) {
+      const p = await DB.addPlace({ name: logState.newName.trim(), doordash_url: logState.link.trim(), tags: logState.newTags });
+      placeId = p.id;
+    }
+    await DB.addOrder({ place_id: placeId, person_name: logState.person, price: parseFloat(logState.price), weight_lbs: parseFloat(logState.weight) });
+    await refresh();
+    const savedName = DATA.places.find((p) => p.id === placeId)?.name || "order";
+    Object.assign(logState, { link: "", matchedId: null, newName: "", newTags: [], price: "", weight: "" });
+    toast(`Logged ${savedName} · ${(parseFloat(DATA.orders.at(-1)?.weight_lbs || 0)).toFixed(1)} lb`);
+    go("detail", { placeId });
+  } catch (e) {
+    console.error(e); toast("Couldn't save — check your connection"); btn.disabled = false; btn.textContent = "Save order";
+  }
+}
+
+function screenLibrary() {
+  let items = rankedPlaces(DATA);
+  if (lib.tag) items = items.filter((x) => x.place.tags.includes(lib.tag));
+  if (lib.sort === "rating") items.sort((a, b) => b.s.avgRating - a.s.avgRating || b.s.ratio - a.s.ratio);
+  else items.sort((a, b) => b.s.ratio - a.s.ratio);
+
+  const usedTags = [...new Set(DATA.places.flatMap((p) => p.tags))].sort();
+
+  main.innerHTML = `
+    <div class="app-head"><h1>Library</h1></div>
+    <div class="filterbar">
+      <button class="chip ${!lib.tag ? "on" : ""}" data-tag="">All</button>
+      ${usedTags.map((t) => `<button class="chip ${lib.tag === t ? "on" : ""}" data-tag="${esc(t)}">${esc(t)}</button>`).join("")}
+    </div>
+    <div class="sortrow">
+      <button class="seg ${lib.sort === "ratio" ? "on" : ""}" data-sort="ratio">Best value</button>
+      <button class="seg ${lib.sort === "rating" ? "on" : ""}" data-sort="rating">Top rated</button>
+    </div>
+    ${items.length ? `<div>${items.map((x, i) => placeCard(x, i)).join("")}</div>`
+      : emptyBlock("Nothing here yet", lib.tag ? "No places tagged " + esc(lib.tag) + " so far." : "Log an order to fill the library.")}`;
+
+  main.querySelectorAll("[data-tag]").forEach((c) => c.onclick = () => { lib.tag = c.dataset.tag || null; screenLibrary(); });
+  main.querySelectorAll("[data-sort]").forEach((b) => b.onclick = () => { lib.sort = b.dataset.sort; screenLibrary(); });
+  main.querySelectorAll("[data-place]").forEach((n) => n.onclick = () => go("detail", { placeId: n.dataset.place }));
+}
+
+function placeCard(x, i) {
+  const { place, s } = x;
+  const stars = s.ratingCount ? `★ ${s.avgRating.toFixed(1)}` : "unrated";
+  return `<div class="place-card" data-place="${place.id}">
+    <div class="rank num">${i + 1}</div>
+    <div class="thumb"></div>
+    <div class="body">
+      <div class="nm">${esc(place.name)}</div>
+      <div class="meta"><span>${esc(place.tags[0] || "—")}</span><i class="dot"></i><span>${s.orderCount} order${s.orderCount === 1 ? "" : "s"}</span><i class="dot"></i><span>${stars}</span></div>
+    </div>
+    <div class="ratio"><span class="gbadge sm">${gradeFor(s.ratio) || "—"}</span><b class="num">${ratioStr(s.ratio)}</b><span>lb/$</span></div>
+  </div>`;
+}
+
+function screenDetail() {
+  const place = DATA.places.find((p) => p.id === view.placeId);
+  if (!place) return go("library");
+  const s = computeStats(place, DATA.orders, DATA.ratings);
+  const myRating = DATA.ratings.find((r) => r.place_id === place.id && r.person_name === currentUser)?.score || 0;
+  const orders = [...s.orders].sort((a, b) => new Date(b.ordered_at) - new Date(a.ordered_at));
+
+  main.innerHTML = `
+    <div class="titlebar"><button class="iconbtn" id="back">${I.back}</button><h2>Place</h2></div>
+    <div class="detail-hero">
+      <div class="thumb"></div>
+      <h1>${esc(place.name)}</h1>
+      <div class="taglist">${place.tags.map((t) => `<span class="chip readonly">${esc(t)}</span>`).join("")}</div>
+      ${place.doordash_url ? `<a class="biglink" href="${esc(place.doordash_url)}" target="_blank" rel="noopener">Open on DoorDash ↗</a>` : ""}
+    </div>
+    <div class="statgrid">
+      <div class="cell"><div class="v num">${ratioStr(s.ratio)}</div><div class="k">lb per $</div></div>
+      <div class="cell"><div class="v">${gradeFor(s.ratio) || "—"}</div><div class="k">grade</div></div>
+      <div class="cell"><div class="v num">${s.orderCount}</div><div class="k">orders</div></div>
+    </div>
+    <h3 class="section-label">Rate this place</h3>
+    <div class="stars" id="stars">
+      ${[1, 2, 3, 4, 5].map((n) => `<button class="${n <= myRating ? "on" : "off"}" data-score="${n}">${I.star}</button>`).join("")}
+    </div>
+    <p class="dim" style="text-align:center;font-size:12.5px">${s.ratingCount ? `Team average ${s.avgRating.toFixed(1)} · ${s.ratingCount} rating${s.ratingCount === 1 ? "" : "s"}` : "Be the first to rate it"}</p>
+    <h3 class="section-label section-gap">Order history</h3>
+    <div>${orders.map((o) => {
+      const r = Number(o.price) > 0 ? Number(o.weight_lbs) / Number(o.price) : 0;
+      return `<div class="order-row">
+        <div class="ini">${esc(initials(o.person_name))}</div>
+        <div class="body"><b>${esc(o.person_name)}</b><div class="sub">${money(o.price)} · ${Number(o.weight_lbs).toFixed(1)} lb · ${relTime(o.ordered_at)}</div></div>
+        <div class="r num">${r.toFixed(2)}</div>
+      </div>`;
+    }).join("")}</div>`;
+
+  $("#back", main).onclick = () => go(tab === "detail" ? "library" : tab);
+  main.querySelectorAll("[data-score]").forEach((b) => b.onclick = async () => {
+    const score = Number(b.dataset.score);
+    main.querySelectorAll("#stars button").forEach((x) => { const on = Number(x.dataset.score) <= score; x.className = on ? "on" : "off"; });
+    try { await DB.upsertRating({ place_id: place.id, person_name: currentUser, score }); await refresh(); toast(`Rated ${place.name} ${score}★`); screenDetail(); }
+    catch (e) { console.error(e); toast("Couldn't save rating"); }
+  });
+}
+
+function screenStats() {
+  const totalW = DATA.orders.reduce((s, o) => s + Number(o.weight_lbs), 0);
+  const totalP = DATA.orders.reduce((s, o) => s + Number(o.price), 0);
+  const overall = totalP > 0 ? totalW / totalP : 0;
+
+  const byPerson = {};
+  for (const o of DATA.orders) {
+    const k = o.person_name; byPerson[k] = byPerson[k] || { w: 0, p: 0, n: 0 };
+    byPerson[k].w += Number(o.weight_lbs); byPerson[k].p += Number(o.price); byPerson[k].n += 1;
+  }
+  const leaders = Object.entries(byPerson).map(([name, v]) => ({ name, ...v, ratio: v.p > 0 ? v.w / v.p : 0 }))
+    .sort((a, b) => b.w - a.w);
+
+  main.innerHTML = `
+    <div class="app-head"><h1>Stats</h1></div>
+    <div class="bigstat"><div class="v num">${totalW.toFixed(0)}<small>lbs</small></div><div class="k">total feast logged</div></div>
+    <div class="duo">
+      <div class="cell"><div class="v num">${money(totalP).replace(".00", "")}</div><div class="k">total spent</div></div>
+      <div class="cell"><div class="v num">${ratioStr(overall)}</div><div class="k">team lb/$</div></div>
+    </div>
+    <h3 class="section-label">Who's feeding the team</h3>
+    <div>${leaders.map((l) => `
+      <div class="lead-row">
+        <div class="ini">${esc(initials(l.name))}</div>
+        <div class="body"><b>${esc(l.name)}</b><div class="sub">${l.n} order${l.n === 1 ? "" : "s"} · ${ratioStr(l.ratio)} lb/$</div></div>
+        <div class="amt"><b class="num">${l.w.toFixed(1)}</b><span>lbs</span></div>
+      </div>`).join("") || emptyBlock("No stats yet", "Log an order to see team totals.")}</div>`;
+}
+
+function screenProfile() {
+  const agg = personAgg(currentUser, DATA);
+  const rank = weightRankOf(currentUser, DATA);
+  const ctx = { rank };
+  const earnedCount = BADGES.filter((b) => evalBadge(b, agg, ctx).earned).length;
+
+  const badgeTiles = BADGES.map((b) => {
+    const r = evalBadge(b, agg, ctx);
+    const cls = r.earned ? `earned ${b.tier}` : "locked";
+    const track = (!r.earned && !b.rank) ? `<div class="btrack"><i style="width:${r.pct}%"></i></div>` : "";
+    return `<div class="badge ${cls}" title="${esc(b.desc)}">
+      <div class="ic">${b.icon}</div>
+      <div class="bn">${esc(b.name)}</div>
+      <div class="bs">${esc(r.sub)}</div>
+      ${track}
+    </div>`;
+  }).join("");
+
+  const picker = DATA.people.map((m) => {
+    const sel = currentUser === m.name;
+    const iniStyle = sel ? "" : `background:${m.accent || "var(--inset-2)"};color:#fff`;
+    return `<button class="person ${sel ? "on" : ""}" data-person="${esc(m.name)}"><span class="ini" style="${iniStyle}">${esc(initials(m.name))}</span>${esc(m.name)}</button>`;
+  }).join("");
+
+  const createForm = profileUI.creating ? `
+    <div class="create">
+      <div class="field" style="margin-bottom:12px"><label>Profile name</label>
+        <div class="input-wrap"><input class="control" id="pName" value="${esc(profileUI.newName)}" placeholder="Your name" maxlength="24" autocomplete="off"/></div></div>
+      <label style="display:block;font-size:14px;font-weight:600;color:var(--ink-2)">Accent</label>
+      <div class="swatches">${ACCENTS.map((c) => `<button class="swatch ${profileUI.newAccent === c ? "on" : ""}" data-accent="${c}" style="background:${c}" aria-label="accent"></button>`).join("")}</div>
+      <div style="display:flex;gap:10px">
+        <button class="btn" id="createBtn" style="flex:2">Create profile</button>
+        <button class="btn ghost" id="cancelBtn" style="flex:1">Cancel</button>
+      </div>
+    </div>` : "";
+
+  main.innerHTML = `
+    <div class="app-head"><h1>Profile</h1></div>
+    <div class="profile-head">
+      <div class="big" style="background:${accentOf(currentUser)}">${esc(initials(currentUser))}</div>
+      <h1>${esc(currentUser)}</h1>
+      <p class="dim" style="font-size:13px">${agg.orderCount} order${agg.orderCount === 1 ? "" : "s"} · ${agg.totalW.toFixed(1)} lbs · ${money(agg.totalP).replace(".00", "")}</p>
+    </div>
+
+    <div class="row-between"><h3 style="margin:0">Badges</h3><span class="dim" style="font-size:12.5px;font-weight:600">${earnedCount} of ${BADGES.length}</span></div>
+    <div class="badges">${badgeTiles}</div>
+
+    <h3 class="section-label section-gap">Switch profile</h3>
+    <div class="people">
+      ${picker}
+      <button class="person newp" id="newProfile"><span class="ini">+</span>New</button>
+    </div>
+    ${createForm}
+
+    <div class="milestone section-gap">
+      <div class="glyph">${I.scale}</div>
+      <div class="body"><div class="row"><b>Data source</b><span class="amt">${DB.live ? "Supabase (shared)" : "Demo (local)"}</span></div>
+      <p class="dim" style="font-size:12.5px;margin-top:4px">${DB.live ? "Everyone on the link sees the same profiles and data." : "Add your Supabase keys in config.js to share across the team."}</p></div>
+    </div>`;
+
+  main.querySelectorAll("[data-person]").forEach((b) => b.onclick = () => {
+    currentUser = b.dataset.person; logState.person = currentUser; store.set("feast:user", currentUser);
+    profileUI.creating = false; toast(`You're logging as ${currentUser}`); screenProfile(); renderTabbar();
+  });
+  const np = $("#newProfile", main); if (np) np.onclick = () => { profileUI.creating = true; screenProfile(); };
+  const pName = $("#pName", main);
+  if (pName) { pName.oninput = (e) => { profileUI.newName = e.target.value; }; pName.focus(); pName.setSelectionRange(pName.value.length, pName.value.length); }
+  main.querySelectorAll("[data-accent]").forEach((s) => s.onclick = () => { profileUI.newAccent = s.dataset.accent; screenProfile(); });
+  const cb = $("#cancelBtn", main); if (cb) cb.onclick = () => { profileUI.creating = false; profileUI.newName = ""; screenProfile(); };
+  const create = $("#createBtn", main); if (create) create.onclick = createProfile;
+}
+
+async function createProfile() {
+  const name = profileUI.newName.trim();
+  if (!name) { toast("Enter a name first"); return; }
+  if (DATA.people.some((p) => p.name.toLowerCase() === name.toLowerCase())) { toast("That name's already taken"); return; }
+  const btn = $("#createBtn", main); btn.disabled = true; btn.textContent = "Creating…";
+  try {
+    await DB.addPerson({ name, accent: profileUI.newAccent });
+    await refresh();
+    currentUser = name; logState.person = name; store.set("feast:user", name);
+    profileUI.creating = false; profileUI.newName = ""; profileUI.newAccent = ACCENTS[0];
+    toast(`Welcome, ${name}`); screenProfile(); renderTabbar();
+  } catch (e) {
+    console.error(e); toast("Couldn't create profile — that name may be taken"); btn.disabled = false; btn.textContent = "Create profile";
+  }
+}
+
+/* ── Shared bits ──────────────────────────────────────────────── */
+function emptyBlock(title, body) {
+  return `<div class="empty"><div class="glyph">${I.scale}</div><h3>${esc(title)}</h3><p>${esc(body)}</p></div>`;
+}
+function relTime(iso) {
+  const d = Math.floor((Date.now() - new Date(iso)) / 864e5);
+  if (d <= 0) return "today"; if (d === 1) return "yesterday";
+  if (d < 7) return d + "d ago"; if (d < 30) return Math.floor(d / 7) + "w ago";
+  return Math.floor(d / 30) + "mo ago";
+}
+function openLog() { logState.person = currentUser; go("log"); }
+
+/* ── Router ───────────────────────────────────────────────────── */
+function render() {
+  const map = { home: screenHome, log: screenLog, library: screenLibrary, detail: screenDetail, stats: screenStats, profile: screenProfile };
+  (map[view.name] || screenHome)();
+  main.scrollTop = 0;
+  tabbarEl.style.display = view.name === "log" || view.name === "detail" ? "none" : "flex";
+  renderTabbar();
+}
+
+/* ── Boot ─────────────────────────────────────────────────────── */
+(async function boot() {
+  try {
+    DB = isLive ? await makeSupabaseDB() : makeDemoDB();
+    await refresh();
+  } catch (e) {
+    console.error("Falling back to demo data:", e);
+    DB = makeDemoDB(); await refresh();
+    toast("Couldn't reach the database — showing demo data");
+  }
+  const names = DATA.people.map((p) => p.name);
+  const saved = store.get("feast:user");
+  currentUser = (saved && names.includes(saved)) ? saved : (names[0] || currentUser);
+  logState.person = currentUser;
+  render();
+})();
+
+</script>
+</body>
+</html>
