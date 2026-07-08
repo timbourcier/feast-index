@@ -26,9 +26,11 @@ export const CONFIG = {
   // ── Tags ────────────────────────────────────────────────────
   // Fixed list picked when a place is first added.
   TAGS: [
-    "Wings", "Tacos", "Burgers", "Sandwiches", "Pizza", "Bowls",
-    "Sushi/Poke", "Chinese", "Indian", "Mexican", "Fried Chicken",
-    "Salads", "BBQ", "Noodles/Ramen",
+    "Tacos", "Burgers", "Sandwiches", "Pizza", "Bowls", "Sushi/Poke",
+    "Sushi", "Chinese", "Japanese", "Korean", "Thai", "Vietnamese",
+    "Indian", "Mexican", "Mediterranean", "Greek", "Italian", "Pasta",
+    "Fried Chicken", "BBQ", "Steak", "Seafood", "Noodles/Ramen", "Curry",
+    "Burritos", "Deli", "Salads", "Breakfast", "Halal", "Vegan",
   ],
 
   // ── Team milestone ──────────────────────────────────────────
