@@ -33,17 +33,35 @@ export const CONFIG = {
     "Burritos", "Deli", "Salads", "Breakfast", "Halal", "Vegan",
   ],
 
+  // ── Tag icons ───────────────────────────────────────────────
+  // One emoji per tag above, shown on chips and place thumbnails.
+  // Add an entry here whenever you add a tag to TAGS — anything
+  // missing falls back to a generic plate icon.
+  TAG_ICONS: {
+    "Tacos": "🌮", "Burgers": "🍔", "Sandwiches": "🥪", "Pizza": "🍕",
+    "Bowls": "🥣", "Sushi/Poke": "🍣", "Sushi": "🍱", "Chinese": "🥡",
+    "Japanese": "🍙", "Korean": "🍲", "Thai": "🌶️", "Vietnamese": "🍜",
+    "Indian": "🍛", "Mexican": "🌯", "Mediterranean": "🥙", "Greek": "🫒",
+    "Italian": "🧀", "Pasta": "🍝", "Fried Chicken": "🍗", "BBQ": "🍖",
+    "Steak": "🥩", "Seafood": "🦐", "Noodles/Ramen": "🍜", "Curry": "🍛",
+    "Burritos": "🌯", "Deli": "🥖", "Salads": "🥗", "Breakfast": "🍳",
+    "Halal": "🕌", "Vegan": "🌱",
+  },
+
   // ── Team milestone ──────────────────────────────────────────
   // Cumulative pounds the team is chasing (drives the Home bar).
   MILESTONE_GOAL_LBS: 200,
 
   // ── Grades ──────────────────────────────────────────────────
-  // Ratio (lb/$) thresholds, highest first. First match wins.
+  // Cost-per-pound ($/lb) thresholds — lower is better. Listed
+  // lowest (best) first; the first bucket an order's $/lb fits
+  // under wins. Tune these to your team's real order history.
   GRADES: [
-    { min: 0.40, label: "A+" },
-    { min: 0.33, label: "A" },
-    { min: 0.27, label: "B" },
-    { min: 0.20, label: "C" },
-    { min: 0.00, label: "D" },
+    { max: 7.50,     label: "S"  },
+    { max: 9.50,     label: "A+" },
+    { max: 11.50,    label: "A"  },
+    { max: 14.50,    label: "B"  },
+    { max: 18.00,    label: "C"  },
+    { max: Infinity, label: "D"  },
   ],
 };

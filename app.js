@@ -22,6 +22,7 @@ const I = {
   repeat: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>`,
   compass: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`,
   crown: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.56 3.27a.5.5 0 0 1 .88 0l2.95 5.6a1 1 0 0 0 1.52.3l4.27-3.67a.5.5 0 0 1 .8.52l-2.83 10.25a1 1 0 0 1-.96.73H5.81a1 1 0 0 1-.96-.73L2.02 6.02a.5.5 0 0 1 .8-.52l4.27 3.67a1 1 0 0 0 1.52-.3z"/><path d="M5 21h14"/></svg>`,
+  info: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`,
 };
 
 const MERGE_LOGO = "data:image/png;base64,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";
@@ -32,6 +33,9 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "
 const initials = (n) => n.trim().split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
 const money = (n) => "$" + Number(n).toFixed(2);
 const ratioStr = (r) => (r > 0 ? r.toFixed(2) : "—");
+const costPerLb = (r) => (r > 0 ? "$" + r.toFixed(2) + "/lb" : "—");
+const tagIcon = (t) => CONFIG.TAG_ICONS?.[t] || "🍽️";
+const tagLabel = (t) => `${tagIcon(t)} ${t}`;
 const uid = () => (crypto.randomUUID ? crypto.randomUUID() : "id-" + Math.random().toString(36).slice(2));
 
 function storeSlug(u) {
@@ -42,9 +46,9 @@ function storeSlug(u) {
 }
 const prettifySlug = (slug) => slug.split("-").filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join(" ");
 
-function gradeFor(ratio) {
-  if (!(ratio > 0)) return null;
-  return (CONFIG.GRADES.find((g) => ratio >= g.min) || CONFIG.GRADES[CONFIG.GRADES.length - 1]).label;
+function gradeFor(costPerLbRatio) {
+  if (!(costPerLbRatio > 0)) return null;
+  return (CONFIG.GRADES.find((g) => costPerLbRatio <= g.max) || CONFIG.GRADES[CONFIG.GRADES.length - 1]).label;
 }
 
 /* ── Accents & persistence ────────────────────────────────────── */
@@ -67,7 +71,10 @@ function personAgg(name, data) {
     if (po[0] && po[0].person_name === name) founded++;
   }
   const ratings = data.ratings.filter((r) => r.person_name === name).length;
-  const bestRatio = os.reduce((m, o) => Math.max(m, Number(o.price) > 0 ? Number(o.weight_lbs) / Number(o.price) : 0), 0);
+  const bestRatio = os.reduce((m, o) => {
+    const w = Number(o.weight_lbs), p = Number(o.price);
+    return Math.min(m, w > 0 ? p / w : Infinity);
+  }, Infinity);
   return { orderCount: os.length, totalW, totalP, places: places.size, founded, ratings, bestRatio };
 }
 
@@ -81,7 +88,7 @@ function weightRankOf(name, data) {
 
 const BADGES = [
   { id: "first",   name: "First Bite",     icon: I.flame,   tier: "bronze", desc: "Log your first order",                calc: (a) => ({ cur: a.orderCount, goal: 1 }) },
-  { id: "bargain", name: "Bargain Hunter", icon: I.dollar,  tier: "red",    desc: "Log an A+ order (0.40+ lb/$)",        calc: (a) => ({ cur: a.bestRatio >= 0.40 ? 1 : 0, goal: 1, display: a.bestRatio > 0 ? a.bestRatio.toFixed(2) + " best" : "—" }) },
+  { id: "bargain", name: "Bargain Hunter", icon: I.dollar,  tier: "red",    desc: `Log a ${CONFIG.GRADES[0].label}-tier order ($${CONFIG.GRADES[0].max.toFixed(2)}/lb or better)`, calc: (a) => ({ cur: (a.bestRatio < Infinity && a.bestRatio <= CONFIG.GRADES[0].max) ? 1 : 0, goal: 1, display: a.bestRatio < Infinity ? "$" + a.bestRatio.toFixed(2) + "/lb best" : "—" }) },
   { id: "scout",   name: "Scout",          icon: I.compass, tier: "bronze", desc: "Add 3 new places to the index",       calc: (a) => ({ cur: a.founded, goal: 3 }) },
   { id: "critic",  name: "Critic",         icon: I.star,    tier: "red",    desc: "Rate 3 places",                       calc: (a) => ({ cur: a.ratings, goal: 3 }) },
   { id: "regular", name: "Regular",        icon: I.repeat,  tier: "silver", desc: "Log 5 orders",                        calc: (a) => ({ cur: a.orderCount, goal: 5 }) },
@@ -188,7 +195,7 @@ function computeStats(place, orders, ratings) {
   const rs = ratings.filter((r) => r.place_id === place.id);
   const totalW = os.reduce((s, o) => s + Number(o.weight_lbs), 0);
   const totalP = os.reduce((s, o) => s + Number(o.price), 0);
-  const ratio = totalP > 0 ? totalW / totalP : 0;
+  const ratio = totalW > 0 ? totalP / totalW : 0;
   const avg = rs.length ? rs.reduce((s, r) => s + r.score, 0) / rs.length : 0;
   return { orders: os, ratings: rs, totalW, totalP, ratio, orderCount: os.length, avgRating: avg, ratingCount: rs.length };
 }
@@ -197,7 +204,7 @@ function rankedPlaces(data) {
   return data.places
     .map((p) => ({ place: p, s: computeStats(p, data.orders, data.ratings) }))
     .filter((x) => x.s.orderCount > 0)
-    .sort((a, b) => b.s.ratio - a.s.ratio);
+    .sort((a, b) => a.s.ratio - b.s.ratio);
 }
 
 /* ── App state ────────────────────────────────────────────────── */
@@ -256,7 +263,7 @@ function screenHome() {
         <div class="k">This week's top pick</div>
         <div class="v">${esc(top.place.name)}</div>
         <div class="pills">
-          <span class="pill num">${ratioStr(top.s.ratio)} lb/$</span>
+          <span class="pill num">${costPerLb(top.s.ratio)}</span>
           <span class="pill">Grade ${gradeFor(top.s.ratio)}</span>
         </div>
       </div>
@@ -270,7 +277,7 @@ function screenHome() {
         <div class="cell" data-place="${x.place.id}">
           <div class="medal ${medalClass[i]}">${I.medal}</div>
           <div class="nm">${esc(x.place.name)}</div>
-          <div class="rt num">${ratioStr(x.s.ratio)} lb/$</div>
+          <div class="rt num">${costPerLb(x.s.ratio)}</div>
           <div style="margin-top:7px"><span class="gbadge sm">${gradeFor(x.s.ratio)}</span></div>
         </div>`).join("")}
     </div>` : "";
@@ -300,6 +307,30 @@ function screenHome() {
   $("#logBtn", main).onclick = openLog;
 }
 
+const LOG_TIP_KEY = "feast:seenLogTip";
+function showLogTip() {
+  if ($("#logTip")) return;
+  const el = document.createElement("div");
+  el.id = "logTip";
+  el.className = "tip-overlay";
+  el.innerHTML = `
+    <div class="tip-sheet">
+      <div class="glyph">${I.info}</div>
+      <h2>Before you log an order</h2>
+      <div class="tip-item">
+        <div class="n">1</div>
+        <p><b>Price = food only.</b> Leave out the delivery fee, service fee, tip, and tax — just what the food itself rang up as on the receipt.</p>
+      </div>
+      <div class="tip-item">
+        <div class="n">2</div>
+        <p><b>Weigh it as it arrives.</b> Put the whole order on the scale in its bag/containers, don't plate it first.</p>
+      </div>
+      <button class="btn" id="tipGotIt">Got it</button>
+    </div>`;
+  document.body.appendChild(el);
+  $("#tipGotIt", el).onclick = () => { store.set(LOG_TIP_KEY, "1"); el.remove(); };
+}
+
 function screenLog() {
   const slug = storeSlug(logState.link);
   const matched = slug ? DATA.places.find((p) => storeSlug(p.doordash_url) === slug) : null;
@@ -308,7 +339,7 @@ function screenLog() {
   let placeBlock = "";
   if (logState.link.trim()) {
     if (matched) {
-      placeBlock = `<div class="place-strip"><div class="thumb"></div><div><div class="nm">${esc(matched.name)}</div><div class="sub">Matched to existing place</div></div></div>`;
+      placeBlock = `<div class="place-strip"><div class="thumb">${matched.tags[0] ? tagIcon(matched.tags[0]) : ""}</div><div><div class="nm">${esc(matched.name)}</div><div class="sub">Matched to existing place</div></div></div>`;
     } else {
       if (!logState.newName) logState.newName = prettifySlug(slug);
       placeBlock = `
@@ -316,12 +347,12 @@ function screenLog() {
         <div class="field"><label>Place name</label>
           <div class="input-wrap"><input class="control" id="newName" value="${esc(logState.newName)}" placeholder="Restaurant name"/></div></div>
         <div class="field"><label>Tags</label>
-          <div class="chips">${CONFIG.TAGS.map((t) => `<button class="chip ${logState.newTags.includes(t) ? "on" : ""}" data-tag="${esc(t)}">${esc(t)}</button>`).join("")}</div></div>`;
+          <div class="chips">${CONFIG.TAGS.map((t) => `<button class="chip ${logState.newTags.includes(t) ? "on" : ""}" data-tag="${esc(t)}">${esc(tagLabel(t))}</button>`).join("")}</div></div>`;
     }
   }
 
   const price = parseFloat(logState.price), weight = parseFloat(logState.weight);
-  const ratio = price > 0 && weight > 0 ? weight / price : 0;
+  const ratio = price > 0 && weight > 0 ? price / weight : 0;
   const ready = (matched || (logState.newName.trim() && logState.newTags.length)) && ratio > 0 && logState.person;
 
   main.innerHTML = `
@@ -340,12 +371,13 @@ function screenLog() {
       <div class="field"><label>Weight (lb)</label>
         <div class="input-wrap"><input class="control num" id="weight" inputmode="decimal" value="${esc(logState.weight)}" placeholder="0.0"/></div></div>
     </div>
+    <button type="button" class="tip-link" id="tipLink">${I.info}What should I enter here?</button>
     <div class="field"><label>Who's logging this</label>
       <div class="people">${DATA.people.map((m) =>
         `<button class="person ${logState.person === m.name ? "on" : ""}" data-person="${esc(m.name)}"><span class="ini">${esc(initials(m.name))}</span>${esc(m.name)}</button>`).join("")}</div></div>
     <div class="readout">
-      <div class="k">This order's ratio</div>
-      <div class="v num">${ratio > 0 ? ratio.toFixed(2) : "—"}<small>lb/$</small></div>
+      <div class="k">This order's rate</div>
+      <div class="v num">${ratio > 0 ? "$" + ratio.toFixed(2) : "—"}<small>/lb</small></div>
       ${ratio > 0 ? `<div class="grade"><span class="gbadge">Grade ${gradeFor(ratio)}</span></div>` : ""}
     </div>
     <button class="btn" id="save" ${ready ? "" : "disabled"}>Save order</button>`;
@@ -368,12 +400,14 @@ function screenLog() {
     toggleSave();
   });
   $("#save", main).onclick = saveOrder;
+  const tipLink = $("#tipLink", main); if (tipLink) tipLink.onclick = showLogTip;
+  if (!store.get(LOG_TIP_KEY)) showLogTip();
 
   function updateReadout() {
     const p = parseFloat(logState.price), w = parseFloat(logState.weight);
-    const r = p > 0 && w > 0 ? w / p : 0;
+    const r = p > 0 && w > 0 ? p / w : 0;
     const ro = main.querySelector(".readout");
-    ro.querySelector(".v").innerHTML = `${r > 0 ? r.toFixed(2) : "—"}<small>lb/$</small>`;
+    ro.querySelector(".v").innerHTML = `${r > 0 ? "$" + r.toFixed(2) : "—"}<small>/lb</small>`;
     let g = ro.querySelector(".grade");
     if (r > 0) { if (!g) { g = document.createElement("div"); g.className = "grade"; ro.appendChild(g); } g.innerHTML = `<span class="gbadge">Grade ${gradeFor(r)}</span>`; }
     else if (g) g.remove();
@@ -408,8 +442,8 @@ async function saveOrder() {
 function screenLibrary() {
   let items = rankedPlaces(DATA);
   if (lib.tag) items = items.filter((x) => x.place.tags.includes(lib.tag));
-  if (lib.sort === "rating") items.sort((a, b) => b.s.avgRating - a.s.avgRating || b.s.ratio - a.s.ratio);
-  else items.sort((a, b) => b.s.ratio - a.s.ratio);
+  if (lib.sort === "rating") items.sort((a, b) => b.s.avgRating - a.s.avgRating || a.s.ratio - b.s.ratio);
+  else items.sort((a, b) => a.s.ratio - b.s.ratio);
 
   const usedTags = [...new Set(DATA.places.flatMap((p) => p.tags))].sort();
 
@@ -417,7 +451,7 @@ function screenLibrary() {
     <div class="app-head"><h1>Library</h1></div>
     <div class="filterbar">
       <button class="chip ${!lib.tag ? "on" : ""}" data-tag="">All</button>
-      ${usedTags.map((t) => `<button class="chip ${lib.tag === t ? "on" : ""}" data-tag="${esc(t)}">${esc(t)}</button>`).join("")}
+      ${usedTags.map((t) => `<button class="chip ${lib.tag === t ? "on" : ""}" data-tag="${esc(t)}">${esc(tagLabel(t))}</button>`).join("")}
     </div>
     <div class="sortrow">
       <button class="seg ${lib.sort === "ratio" ? "on" : ""}" data-sort="ratio">Best value</button>
@@ -436,12 +470,12 @@ function placeCard(x, i) {
   const stars = s.ratingCount ? `★ ${s.avgRating.toFixed(1)}` : "unrated";
   return `<div class="place-card" data-place="${place.id}">
     <div class="rank num">${i + 1}</div>
-    <div class="thumb"></div>
+    <div class="thumb">${place.tags[0] ? tagIcon(place.tags[0]) : ""}</div>
     <div class="body">
       <div class="nm">${esc(place.name)}</div>
-      <div class="meta"><span>${esc(place.tags[0] || "—")}</span><i class="dot"></i><span>${s.orderCount} order${s.orderCount === 1 ? "" : "s"}</span><i class="dot"></i><span>${stars}</span></div>
+      <div class="meta"><span>${place.tags[0] ? esc(tagLabel(place.tags[0])) : "—"}</span><i class="dot"></i><span>${s.orderCount} order${s.orderCount === 1 ? "" : "s"}</span><i class="dot"></i><span>${stars}</span></div>
     </div>
-    <div class="ratio"><span class="gbadge sm">${gradeFor(s.ratio) || "—"}</span><b class="num">${ratioStr(s.ratio)}</b><span>lb/$</span></div>
+    <div class="ratio"><span class="gbadge sm">${gradeFor(s.ratio) || "—"}</span><b class="num">${costPerLb(s.ratio)}</b></div>
   </div>`;
 }
 
@@ -455,13 +489,13 @@ function screenDetail() {
   main.innerHTML = `
     <div class="titlebar"><button class="iconbtn" id="back">${I.back}</button><h2>Place</h2></div>
     <div class="detail-hero">
-      <div class="thumb"></div>
+      <div class="thumb">${place.tags[0] ? tagIcon(place.tags[0]) : ""}</div>
       <h1>${esc(place.name)}</h1>
-      <div class="taglist">${place.tags.map((t) => `<span class="chip readonly">${esc(t)}</span>`).join("")}</div>
+      <div class="taglist">${place.tags.map((t) => `<span class="chip readonly">${esc(tagLabel(t))}</span>`).join("")}</div>
       ${place.doordash_url ? `<a class="biglink" href="${esc(place.doordash_url)}" target="_blank" rel="noopener">Open on DoorDash ↗</a>` : ""}
     </div>
     <div class="statgrid">
-      <div class="cell"><div class="v num">${ratioStr(s.ratio)}</div><div class="k">lb per $</div></div>
+      <div class="cell"><div class="v num">${s.ratio > 0 ? "$" + s.ratio.toFixed(2) : "—"}</div><div class="k">$ per lb</div></div>
       <div class="cell"><div class="v">${gradeFor(s.ratio) || "—"}</div><div class="k">grade</div></div>
       <div class="cell"><div class="v num">${s.orderCount}</div><div class="k">orders</div></div>
     </div>
@@ -472,11 +506,11 @@ function screenDetail() {
     <p class="dim" style="text-align:center;font-size:12.5px">${s.ratingCount ? `Team average ${s.avgRating.toFixed(1)} · ${s.ratingCount} rating${s.ratingCount === 1 ? "" : "s"}` : "Be the first to rate it"}</p>
     <h3 class="section-label section-gap">Order history</h3>
     <div>${orders.map((o) => {
-      const r = Number(o.price) > 0 ? Number(o.weight_lbs) / Number(o.price) : 0;
+      const r = Number(o.weight_lbs) > 0 ? Number(o.price) / Number(o.weight_lbs) : 0;
       return `<div class="order-row">
         <div class="ini">${esc(initials(o.person_name))}</div>
         <div class="body"><b>${esc(o.person_name)}</b><div class="sub">${money(o.price)} · ${Number(o.weight_lbs).toFixed(1)} lb · ${relTime(o.ordered_at)}</div></div>
-        <div class="r num">${r.toFixed(2)}</div>
+        <div class="r num">${r > 0 ? "$" + r.toFixed(2) : "—"}</div>
       </div>`;
     }).join("")}</div>`;
 
@@ -492,14 +526,14 @@ function screenDetail() {
 function screenStats() {
   const totalW = DATA.orders.reduce((s, o) => s + Number(o.weight_lbs), 0);
   const totalP = DATA.orders.reduce((s, o) => s + Number(o.price), 0);
-  const overall = totalP > 0 ? totalW / totalP : 0;
+  const overall = totalW > 0 ? totalP / totalW : 0;
 
   const byPerson = {};
   for (const o of DATA.orders) {
     const k = o.person_name; byPerson[k] = byPerson[k] || { w: 0, p: 0, n: 0 };
     byPerson[k].w += Number(o.weight_lbs); byPerson[k].p += Number(o.price); byPerson[k].n += 1;
   }
-  const leaders = Object.entries(byPerson).map(([name, v]) => ({ name, ...v, ratio: v.p > 0 ? v.w / v.p : 0 }))
+  const leaders = Object.entries(byPerson).map(([name, v]) => ({ name, ...v, ratio: v.w > 0 ? v.p / v.w : 0 }))
     .sort((a, b) => b.w - a.w);
 
   main.innerHTML = `
@@ -507,13 +541,13 @@ function screenStats() {
     <div class="bigstat"><div class="v num">${totalW.toFixed(0)}<small>lbs</small></div><div class="k">total feast logged</div></div>
     <div class="duo">
       <div class="cell"><div class="v num">${money(totalP).replace(".00", "")}</div><div class="k">total spent</div></div>
-      <div class="cell"><div class="v num">${ratioStr(overall)}</div><div class="k">team lb/$</div></div>
+      <div class="cell"><div class="v num">${costPerLb(overall)}</div><div class="k">team rate</div></div>
     </div>
     <h3 class="section-label">Who's feeding the team</h3>
     <div>${leaders.map((l) => `
       <div class="lead-row">
         <div class="ini">${esc(initials(l.name))}</div>
-        <div class="body"><b>${esc(l.name)}</b><div class="sub">${l.n} order${l.n === 1 ? "" : "s"} · ${ratioStr(l.ratio)} lb/$</div></div>
+        <div class="body"><b>${esc(l.name)}</b><div class="sub">${l.n} order${l.n === 1 ? "" : "s"} · ${costPerLb(l.ratio)}</div></div>
         <div class="amt"><b class="num">${l.w.toFixed(1)}</b><span>lbs</span></div>
       </div>`).join("") || emptyBlock("No stats yet", "Log an order to see team totals.")}</div>`;
 }

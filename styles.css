@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
    The Feast Index — design system
    Faithful to the mockups: brick-red accent, ivory page, white app
-   surface, bold clean sans. The lb/$ readout is the signature.
+   surface, bold clean sans. The $/lb readout is the signature.
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
@@ -237,7 +237,7 @@ input.control:focus { outline: none; border-color: var(--red); background: #fff;
   display: flex; align-items: center; gap: 13px;
   background: var(--inset); border-radius: var(--r-md); padding: 14px; margin-bottom: 18px;
 }
-.place-strip .thumb { width: 48px; height: 48px; border-radius: 13px; background: var(--red-tint); flex: none; }
+.place-strip .thumb { width: 48px; height: 48px; border-radius: 13px; background: var(--red-tint); flex: none; display: grid; place-items: center; font-size: 22px; }
 .place-strip .nm { font-size: 16px; font-weight: 700; }
 .place-strip .sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
 
@@ -302,7 +302,7 @@ input.control:focus { outline: none; border-color: var(--red); background: #fff;
 }
 .place-card:last-child { border-bottom: none; }
 .place-card .rank { width: 24px; text-align: center; font-size: 14px; font-weight: 700; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
-.place-card .thumb { width: 46px; height: 46px; border-radius: 13px; background: var(--red-tint); flex: none; }
+.place-card .thumb { width: 46px; height: 46px; border-radius: 13px; background: var(--red-tint); flex: none; display: grid; place-items: center; font-size: 21px; }
 .place-card .body { flex: 1; min-width: 0; }
 .place-card .nm { font-size: 15.5px; font-weight: 700; }
 .place-card .meta { font-size: 12.5px; color: var(--muted); margin-top: 3px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
@@ -313,7 +313,7 @@ input.control:focus { outline: none; border-color: var(--red); background: #fff;
 
 /* ── Detail ────────────────────────────────────────────────────── */
 .detail-hero { text-align: center; margin-bottom: 22px; }
-.detail-hero .thumb { width: 68px; height: 68px; border-radius: 20px; background: var(--red-tint); margin: 0 auto 14px; }
+.detail-hero .thumb { width: 68px; height: 68px; border-radius: 20px; background: var(--red-tint); margin: 0 auto 14px; display: grid; place-items: center; font-size: 32px; }
 .detail-hero h1 { margin-bottom: 8px; }
 .detail-hero .taglist { display: flex; gap: 7px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
 .detail-hero .biglink { font-size: 13px; color: var(--red); font-weight: 600; text-decoration: none; }
@@ -418,6 +418,44 @@ input.control:focus { outline: none; border-color: var(--red); background: #fff;
 }
 
 .section-gap { margin-top: 28px; }
+
+/* ── "Before you log" tip ──────────────────────────────────────── */
+.tip-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: none; cursor: pointer; font-family: var(--font);
+  font-size: 13px; font-weight: 600; color: var(--ink-2);
+  padding: 2px 0; margin: -4px 0 20px;
+}
+.tip-link svg { width: 15px; height: 15px; stroke: var(--muted); flex: none; }
+.tip-link:hover { color: var(--ink); }
+.tip-overlay {
+  position: fixed; inset: 0; background: rgba(27,26,24,.55);
+  display: flex; align-items: flex-end; justify-content: center;
+  z-index: 60; padding: 0; animation: tipFade .15s ease;
+}
+@media (min-width: 520px) { .tip-overlay { align-items: center; padding: 20px; } }
+@keyframes tipFade { from { opacity: 0; } to { opacity: 1; } }
+.tip-sheet {
+  background: var(--surface); border-radius: 26px 26px 0 0;
+  padding: 26px 22px calc(22px + env(safe-area-inset-bottom));
+  width: 100%; max-width: 460px;
+}
+@media (min-width: 520px) { .tip-sheet { border-radius: var(--r-lg); box-shadow: var(--shadow); } }
+.tip-sheet .glyph {
+  width: 52px; height: 52px; border-radius: var(--r-md); background: var(--red-tint);
+  display: grid; place-items: center; margin-bottom: 16px;
+}
+.tip-sheet .glyph svg { width: 24px; height: 24px; stroke: var(--red); }
+.tip-sheet h2 { margin-bottom: 16px; }
+.tip-item { display: flex; gap: 12px; margin-bottom: 16px; }
+.tip-item .n {
+  width: 24px; height: 24px; border-radius: var(--pill); background: var(--inset);
+  color: var(--ink-2); font-size: 12px; font-weight: 700; flex: none;
+  display: grid; place-items: center; margin-top: 1px;
+}
+.tip-item p { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.tip-item p b { color: var(--ink); }
+.tip-sheet .btn { margin-top: 6px; }
 
 /* Very narrow phones */
 @media (max-width: 360px) {

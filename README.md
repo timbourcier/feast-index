@@ -2,7 +2,7 @@
 
 A food ranking system powered by receipts, fishing scales, and questionable amounts of takeout. Find out which restaurants give you the most feast for your dollar.
 
-Log a team order (DoorDash link + price + weight), and the app tracks a **lb-per-dollar** ratio for every place, ranks them, and lets the team browse and rate them.
+Log a team order (DoorDash link + price + weight), and the app tracks a **$-per-pound** rate for every place, ranks them, and lets the team browse and rate them. Lower $/lb is better — it's the cost of a pound of that food.
 
 ---
 
@@ -48,7 +48,7 @@ SUPABASE_ANON_KEY: "eyJhbGci...",
 ```
 While these are blank the app stays in demo mode. Fill them in and it switches to the real shared database — everyone on the link sees the same data.
 
-Also in `config.js`: edit `TEAM` (names in the picker), `TAGS` (the fixed tag list), `MILESTONE_GOAL_LBS`, and the `GRADES` cutoffs.
+Also in `config.js`: edit `TEAM` (names in the picker), `TAGS` (the fixed tag list) and `TAG_ICONS` (the emoji shown on each tag's chip and thumbnail — add an entry here whenever you add a new tag), `MILESTONE_GOAL_LBS`, and the `GRADES` cutoffs (now `$/lb` maximums — lower is better, so **S** is the top tier and **D** is the catch-all at the bottom).
 
 ### 4. Deploy
 Push to your repo, then in Vercel: **Add New → Project → import the repo**. No framework, no build command, output directory is the root. Deploy. That's the shared link you send the team.
@@ -59,14 +59,15 @@ For a quick look without deploying, just open `feast-index-preview.html` in a br
 
 ## Profiles & badges
 
-Profiles live in the `people` table and are created **inside the app** (Profile tab → New), so adding a teammate no longer means editing `config.js` — the first-run seed just bootstraps the list from `TEAM`. Whoever you pick is remembered on that device (via `localStorage`, which falls back silently if unavailable). Each profile earns badges computed live from the data: First Bite, Bargain Hunter (an A+ order), Scout (added 3 places), Critic (rated 3), Regular, Heavyweight, Feast Master, and Team MVP (most pounds logged). Tweak thresholds in the `BADGES` array in `app.js`.
+Profiles live in the `people` table and are created **inside the app** (Profile tab → New), so adding a teammate no longer means editing `config.js` — the first-run seed just bootstraps the list from `TEAM`. Whoever you pick is remembered on that device (via `localStorage`, which falls back silently if unavailable). Each profile earns badges computed live from the data: First Bite, Bargain Hunter (an S-tier order), Scout (added 3 places), Critic (rated 3), Regular, Heavyweight, Feast Master, and Team MVP (most pounds logged). Tweak thresholds in the `BADGES` array in `app.js`.
 
 ## How the ranking works
 
-`lb/$ ratio = SUM(weight) / SUM(price)` across every order logged for a place — so a place's ranking gets more reliable the more the team orders from it. The Library shows the order count and a letter grade next to each place. Ratings are one score per person per place (re-rating overwrites your own).
+`$/lb rate = SUM(price) / SUM(weight)` across every order logged for a place — so a place's ranking gets more reliable the more the team orders from it. Lower is better (cheaper per pound of food). The Library shows the order count and a letter grade next to each place, from **S** (best value) down to **D**. Ratings are one score per person per place (re-rating overwrites your own).
 
 ## Notes / easy next steps
 
+- **Price and weight conventions:** the app shows a one-time tip (and a "What should I enter here?" link on the Log screen any time after) reminding people to enter the **food cost only** (no delivery fee, service fee, tip, or tax) and to **weigh the order as it arrives**, containers and all.
 - **DoorDash links** only auto-fill the place *name* (parsed from the URL slug) — price and weight are always manual from your receipt and scale. DoorDash doesn't expose those.
 - Tagging happens once, when a place is first logged; every later order reuses the same place record.
 - **Live updates:** the app refetches after each write. If you want screens to update when a *teammate* logs something, add a Supabase realtime subscription that calls `refresh()` + `render()`.

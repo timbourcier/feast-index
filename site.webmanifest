@@ -1,0 +1,13 @@
+{
+  "name": "The Feast Index",
+  "short_name": "Feast Index",
+  "description": "A food ranking system powered by receipts, fishing scales, and questionable amounts of takeout.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#E6E3DE",
+  "theme_color": "#E6E3DE",
+  "icons": [
+    { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}
