@@ -31,6 +31,9 @@ export const CONFIG = {
     "Indian", "Mexican", "Mediterranean", "Greek", "Italian", "Pasta",
     "Fried Chicken", "BBQ", "Steak", "Seafood", "Noodles/Ramen", "Curry",
     "Burritos", "Deli", "Salads", "Breakfast", "Halal", "Vegan",
+    "Wraps", "Dumplings", "Soup", "Fries", "Hot Dogs", "Middle Eastern",
+    "Kebab", "Hawaiian", "Caribbean", "Filipino", "Brunch", "Bagels",
+    "Vegetarian", "Smoothies", "Coffee", "Bubble Tea",
   ],
 
   // ── Tag icons ───────────────────────────────────────────────
@@ -46,6 +49,10 @@ export const CONFIG = {
     "Steak": "🥩", "Seafood": "🦐", "Noodles/Ramen": "🍜", "Curry": "🍛",
     "Burritos": "🌯", "Deli": "🥖", "Salads": "🥗", "Breakfast": "🍳",
     "Halal": "🕌", "Vegan": "🌱",
+    "Wraps": "🫓", "Dumplings": "🥟", "Soup": "🥘", "Fries": "🍟",
+    "Hot Dogs": "🌭", "Middle Eastern": "🧆", "Kebab": "🍢", "Hawaiian": "🍍",
+    "Caribbean": "🍹", "Filipino": "🍚", "Brunch": "🥞", "Bagels": "🥯",
+    "Vegetarian": "🥦", "Smoothies": "🥤", "Coffee": "☕", "Bubble Tea": "🧋",
   },
 
   // ── Team milestone ──────────────────────────────────────────
