@@ -421,8 +421,6 @@ input.control:focus, textarea.control:focus { outline: none; border-color: var(-
 .quad .v { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
 .quad .k { font-size: 12px; color: var(--muted); font-weight: 600; margin-top: 3px; }
 
-.chart { background: var(--inset); border-radius: var(--r-md); padding: 14px 10px 6px; margin-bottom: 22px; overflow-x: auto; }
-.chart svg { display: block; }
 
 .tagbar-row { margin-bottom: 12px; }
 .tagbar-row:last-child { margin-bottom: 0; }
