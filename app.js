@@ -692,7 +692,6 @@ function screenStats() {
 
   const ranked = rankedPlaces({ places: DATA.places, orders, ratings: DATA.ratings });
   const bestValue = ranked[0];
-  const weeks = buildWeeklyBuckets(orders, statsUI.range);
 
   main.innerHTML = `
     <div class="app-head"><h1>Stats</h1></div>
@@ -708,7 +707,6 @@ function screenStats() {
       <div class="cell"><div class="v num">${orders.length}</div><div class="k">orders logged</div></div>
       <div class="cell"><div class="v num">${placesTried}</div><div class="k">places tried</div></div>
     </div>
-    ${weeks.length > 1 ? `<h3 class="section-label">Pounds by week</h3><div class="chart">${chartSVG(weeks)}</div>` : ""}
     ${bestValue ? `<h3 class="section-label section-gap">Best value ${RANGE_PERIOD_LABEL[statsUI.range]}</h3><div>${placeCard(bestValue, 0)}</div>` : ""}
     ${topTags.length ? `<h3 class="section-label section-gap">Top cuisines</h3><div>${topTags.map(([t, w]) => tagBar(t, w, maxTag)).join("")}</div>` : ""}
     <h3 class="section-label section-gap">Who's feeding the team</h3>
