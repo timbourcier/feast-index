@@ -21,9 +21,16 @@ create table if not exists orders (
   person_name text not null,
   price       numeric(10,2) not null check (price > 0),
   weight_lbs  numeric(10,2) not null check (weight_lbs > 0),
+  note        text,
+  photo       text,
   ordered_at  timestamptz not null default now()
 );
 create index if not exists orders_place_idx on orders(place_id);
+
+-- Already have an orders table from before this update? Run these two
+-- lines by themselves — they're no-ops if the columns already exist.
+alter table orders add column if not exists note  text;
+alter table orders add column if not exists photo text;
 
 -- ── Ratings (one per person per place) ──────────────────────────
 create table if not exists ratings (

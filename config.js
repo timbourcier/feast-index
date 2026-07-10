@@ -71,4 +71,11 @@ export const CONFIG = {
     { max: 18.00,    label: "C"  },
     { max: Infinity, label: "D"  },
   ],
+
+  // ── Order photos ────────────────────────────────────────────
+  // Photos are resized/compressed in the browser before saving
+  // (stored as a JPEG data URL — no separate storage bucket
+  // needed). Tune size vs. quality here if rows get too heavy.
+  PHOTO_MAX_DIMENSION: 1000, // longest edge, in px
+  PHOTO_QUALITY: 0.72,       // 0–1 JPEG quality
 };

@@ -23,6 +23,8 @@ const I = {
   compass: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`,
   crown: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.56 3.27a.5.5 0 0 1 .88 0l2.95 5.6a1 1 0 0 0 1.52.3l4.27-3.67a.5.5 0 0 1 .8.52l-2.83 10.25a1 1 0 0 1-.96.73H5.81a1 1 0 0 1-.96-.73L2.02 6.02a.5.5 0 0 1 .8-.52l4.27 3.67a1 1 0 0 0 1.52-.3z"/><path d="M5 21h14"/></svg>`,
   info: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`,
+  camera: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3.5"/></svg>`,
+  close: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>`,
 };
 
 const MERGE_LOGO = "data:image/png;base64,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";
@@ -49,6 +51,14 @@ const prettifySlug = (slug) => slug.split("-").filter(Boolean).map((w) => w[0].t
 function gradeFor(costPerLbRatio) {
   if (!(costPerLbRatio > 0)) return null;
   return (CONFIG.GRADES.find((g) => costPerLbRatio <= g.max) || CONFIG.GRADES[CONFIG.GRADES.length - 1]).label;
+}
+function gradeClass(label) {
+  if (!label) return "";
+  if (label === "S") return "g-s";
+  if (label.startsWith("A")) return "g-a";
+  if (label === "B") return "g-b";
+  if (label === "C") return "g-c";
+  return "g-d";
 }
 
 /* ── Accents & persistence ────────────────────────────────────── */
@@ -121,18 +131,18 @@ function makeDemoDB() {
     { id: "p7", name: "Green Leaf",   doordash_url: "https://doordash.com/store/green-leaf-nyc-40122",     tags: ["Salads"],                 created_at: daysAgo(3) },
   ];
   const O = [
-    { place_id: "p1", person_name: "Tim",   price: 38.50, weight_lbs: 15.8, ordered_at: daysAgo(24) },
+    { place_id: "p1", person_name: "Tim",   price: 38.50, weight_lbs: 15.8, note: "10pc combo, extra ranch, 2 fries", ordered_at: daysAgo(24) },
     { place_id: "p1", person_name: "Raj",   price: 42.00, weight_lbs: 17.0, ordered_at: daysAgo(4) },
-    { place_id: "p2", person_name: "Jamie", price: 45.00, weight_lbs: 14.8, ordered_at: daysAgo(21) },
+    { place_id: "p2", person_name: "Jamie", price: 45.00, weight_lbs: 14.8, note: "3x chicken bowls, 1 tofu", ordered_at: daysAgo(21) },
     { place_id: "p2", person_name: "Tim",   price: 30.00, weight_lbs: 10.0, ordered_at: daysAgo(7) },
     { place_id: "p3", person_name: "Raj",   price: 34.00, weight_lbs: 9.9,  ordered_at: daysAgo(19) },
     { place_id: "p3", person_name: "Jamie", price: 28.00, weight_lbs: 8.0,  ordered_at: daysAgo(5) },
     { place_id: "p4", person_name: "Tim",   price: 38.50, weight_lbs: 4.2,  ordered_at: daysAgo(12) },
-    { place_id: "p5", person_name: "Jamie", price: 52.00, weight_lbs: 12.0, ordered_at: daysAgo(9) },
+    { place_id: "p5", person_name: "Jamie", price: 52.00, weight_lbs: 12.0, note: "General Tso's, lo mein, dumplings x2", ordered_at: daysAgo(9) },
     { place_id: "p5", person_name: "Raj",   price: 40.00, weight_lbs: 9.5,  ordered_at: daysAgo(2) },
     { place_id: "p6", person_name: "Tim",   price: 33.00, weight_lbs: 8.5,  ordered_at: daysAgo(6) },
     { place_id: "p7", person_name: "Jamie", price: 26.00, weight_lbs: 3.1,  ordered_at: daysAgo(3) },
-  ].map((o) => ({ id: uid(), ...o }));
+  ].map((o) => ({ id: uid(), note: null, photo: null, ...o }));
   const R = [
     { place_id: "p1", person_name: "Tim", score: 5 }, { place_id: "p1", person_name: "Raj", score: 5 }, { place_id: "p1", person_name: "Jamie", score: 4 },
     { place_id: "p2", person_name: "Jamie", score: 4 }, { place_id: "p2", person_name: "Tim", score: 5 },
@@ -207,6 +217,84 @@ function rankedPlaces(data) {
     .sort((a, b) => a.s.ratio - b.s.ratio);
 }
 
+/* Most recent order photo logged for a place — used as its "cover" image. */
+function placeCoverPhoto(placeId, orders) {
+  const withPhotos = orders.filter((o) => o.place_id === placeId && o.photo)
+    .sort((a, b) => new Date(b.ordered_at) - new Date(a.ordered_at));
+  return withPhotos[0]?.photo || null;
+}
+
+/* ── Time ranges (Stats screen) ───────────────────────────────── */
+const RANGE_DAYS = { "7d": 7, "30d": 30, "90d": 90, all: null };
+const RANGE_LABEL = { "7d": "7 days", "30d": "30 days", "90d": "90 days", all: "All time" };
+const RANGE_PERIOD_LABEL = { "7d": "this week", "30d": "this month", "90d": "these 90 days", all: "all time" };
+function filterByRange(orders, range) {
+  const days = RANGE_DAYS[range];
+  if (!days) return orders;
+  const cutoff = Date.now() - days * 864e5;
+  return orders.filter((o) => new Date(o.ordered_at).getTime() >= cutoff);
+}
+function buildWeeklyBuckets(orders, range) {
+  if (!orders.length) return [];
+  const weekMs = 7 * 864e5;
+  const count = range === "7d" ? 1 : range === "30d" ? 5 : range === "90d" ? 13 : 12;
+  const now = Date.now();
+  const buckets = [];
+  for (let i = count - 1; i >= 0; i--) {
+    const end = now - i * weekMs, start = end - weekMs;
+    const lbs = orders.reduce((s, o) => {
+      const t = new Date(o.ordered_at).getTime();
+      return t > start && t <= end ? s + Number(o.weight_lbs) : s;
+    }, 0);
+    const label = new Date(start).toLocaleDateString(undefined, { month: "numeric", day: "numeric" });
+    buckets.push({ lbs, label });
+  }
+  return buckets;
+}
+function chartSVG(weeks) {
+  const max = Math.max(...weeks.map((w) => w.lbs), 1);
+  const barW = 40, gap = 12, h = 128, baseline = h - 22;
+  const totalW = weeks.length * (barW + gap) - gap;
+  const bars = weeks.map((wk, i) => {
+    const barH = wk.lbs > 0 ? Math.max(5, (wk.lbs / max) * (baseline - 20)) : 0;
+    const x = i * (barW + gap), y = baseline - barH;
+    return `
+      <rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="7" fill="var(--red)" opacity="${wk.lbs > 0 ? 1 : 0.15}"/>
+      ${wk.lbs > 0 ? `<text x="${x + barW / 2}" y="${y - 7}" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink)" font-family="var(--font)">${wk.lbs.toFixed(0)}</text>` : ""}
+      <text x="${x + barW / 2}" y="${h - 4}" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="var(--font)">${esc(wk.label)}</text>`;
+  }).join("");
+  return `<svg viewBox="0 0 ${totalW} ${h}" style="width:${Math.max(totalW, 260)}px;height:${h}px">${bars}</svg>`;
+}
+function tagBar(tag, w, max) {
+  const pct = max > 0 ? Math.min(100, (w / max) * 100) : 0;
+  return `<div class="tagbar-row"><div class="lbl"><span>${esc(tagLabel(tag))}</span><span>${w.toFixed(1)} lb</span></div><div class="tagbar-track"><i style="width:${pct}%"></i></div></div>`;
+}
+
+/* ── Photo helpers (Log screen) ───────────────────────────────── */
+function resizeImage(file) {
+  const maxDim = CONFIG.PHOTO_MAX_DIMENSION || 1000;
+  const quality = CONFIG.PHOTO_QUALITY || 0.72;
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error("Couldn't read that file"));
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onerror = () => reject(new Error("Couldn't read that image"));
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > height && width > maxDim) { height = Math.round(height * maxDim / width); width = maxDim; }
+        else if (height > maxDim) { width = Math.round(width * maxDim / height); height = maxDim; }
+        const canvas = document.createElement("canvas");
+        canvas.width = width; canvas.height = height;
+        canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL("image/jpeg", quality));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
 /* ── App state ────────────────────────────────────────────────── */
 let DB = null;
 let DATA = { places: [], orders: [], ratings: [], people: [] };
@@ -214,8 +302,9 @@ let currentUser = CONFIG.TEAM[0]?.name || "Guest";
 let tab = "home";
 const view = { name: "home", placeId: null };
 const lib = { tag: null, sort: "ratio" };
+const statsUI = { range: "all" };
 const profileUI = { creating: false, newName: "", newAccent: ACCENTS[0] };
-const logState = { link: "", matchedId: null, newName: "", newTags: [], price: "", weight: "", person: currentUser };
+const logState = { link: "", matchedId: null, newName: "", newTags: [], price: "", weight: "", note: "", photo: null, person: currentUser };
 
 const main = $("#main");
 const tabbarEl = $("#tabbar");
@@ -256,9 +345,10 @@ function screenHome() {
   const goal = CONFIG.MILESTONE_GOAL_LBS;
   const pct = Math.min(100, (totalW / goal) * 100);
 
+  const topCover = top ? placeCoverPhoto(top.place.id, DATA.orders) : null;
   const hero = top ? `
     <div class="hero">
-      <div class="glyph">${I.flame}</div>
+      <div class="glyph ${topCover ? "photo" : ""}">${topCover ? `<img src="${topCover}" alt=""/>` : I.flame}</div>
       <div>
         <div class="k">This week's top pick</div>
         <div class="v">${esc(top.place.name)}</div>
@@ -278,7 +368,7 @@ function screenHome() {
           <div class="medal ${medalClass[i]}">${I.medal}</div>
           <div class="nm">${esc(x.place.name)}</div>
           <div class="rt num">${costPerLb(x.s.ratio)}</div>
-          <div style="margin-top:7px"><span class="gbadge sm">${gradeFor(x.s.ratio)}</span></div>
+          <div style="margin-top:7px"><span class="gbadge sm ${gradeClass(gradeFor(x.s.ratio))}">${gradeFor(x.s.ratio)}</span></div>
         </div>`).join("")}
     </div>` : "";
 
@@ -331,6 +421,12 @@ function showLogTip() {
   $("#tipGotIt", el).onclick = () => { store.set(LOG_TIP_KEY, "1"); el.remove(); };
 }
 
+function photoFieldHTML() {
+  return logState.photo
+    ? `<div class="photo-preview-wrap"><img src="${logState.photo}" alt="Order photo"/><button type="button" class="photo-remove" id="removePhoto">${I.close}</button></div>`
+    : `<label class="photo-add" for="photoInput">${I.camera}<span>Add a photo</span></label>`;
+}
+
 function screenLog() {
   const slug = storeSlug(logState.link);
   const matched = slug ? DATA.places.find((p) => storeSlug(p.doordash_url) === slug) : null;
@@ -372,13 +468,19 @@ function screenLog() {
         <div class="input-wrap"><input class="control num" id="weight" inputmode="decimal" value="${esc(logState.weight)}" placeholder="0.0"/></div></div>
     </div>
     <button type="button" class="tip-link" id="tipLink">${I.info}What should I enter here?</button>
+    <div class="field"><label>What'd you order? <span class="optional">(optional)</span></label>
+      <textarea class="control" id="note" placeholder="2x pad thai, spring rolls…" maxlength="200">${esc(logState.note)}</textarea></div>
+    <div class="field"><label>Photo <span class="optional">(optional)</span></label>
+      <div id="photoField">${photoFieldHTML()}</div>
+      <input type="file" id="photoInput" accept="image/*" capture="environment" hidden />
+    </div>
     <div class="field"><label>Who's logging this</label>
       <div class="people">${DATA.people.map((m) =>
         `<button class="person ${logState.person === m.name ? "on" : ""}" data-person="${esc(m.name)}"><span class="ini">${esc(initials(m.name))}</span>${esc(m.name)}</button>`).join("")}</div></div>
     <div class="readout">
       <div class="k">This order's rate</div>
       <div class="v num">${ratio > 0 ? "$" + ratio.toFixed(2) : "—"}<small>/lb</small></div>
-      ${ratio > 0 ? `<div class="grade"><span class="gbadge">Grade ${gradeFor(ratio)}</span></div>` : ""}
+      ${ratio > 0 ? `<div class="grade"><span class="gbadge ${gradeClass(gradeFor(ratio))}">Grade ${gradeFor(ratio)}</span></div>` : ""}
     </div>
     <button class="btn" id="save" ${ready ? "" : "disabled"}>Save order</button>`;
 
@@ -403,13 +505,31 @@ function screenLog() {
   const tipLink = $("#tipLink", main); if (tipLink) tipLink.onclick = showLogTip;
   if (!store.get(LOG_TIP_KEY)) showLogTip();
 
+  const note = $("#note", main);
+  if (note) note.oninput = (e) => { logState.note = e.target.value; };
+
+  const photoInput = $("#photoInput", main);
+  if (photoInput) photoInput.onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try { logState.photo = await resizeImage(file); }
+    catch (err) { console.error(err); toast("Couldn't use that photo"); }
+    $("#photoField", main).innerHTML = photoFieldHTML();
+    wireRemovePhoto();
+  };
+  function wireRemovePhoto() {
+    const rm = $("#removePhoto", main);
+    if (rm) rm.onclick = () => { logState.photo = null; $("#photoField", main).innerHTML = photoFieldHTML(); wireRemovePhoto(); };
+  }
+  wireRemovePhoto();
+
   function updateReadout() {
     const p = parseFloat(logState.price), w = parseFloat(logState.weight);
     const r = p > 0 && w > 0 ? p / w : 0;
     const ro = main.querySelector(".readout");
     ro.querySelector(".v").innerHTML = `${r > 0 ? "$" + r.toFixed(2) : "—"}<small>/lb</small>`;
     let g = ro.querySelector(".grade");
-    if (r > 0) { if (!g) { g = document.createElement("div"); g.className = "grade"; ro.appendChild(g); } g.innerHTML = `<span class="gbadge">Grade ${gradeFor(r)}</span>`; }
+    if (r > 0) { if (!g) { g = document.createElement("div"); g.className = "grade"; ro.appendChild(g); } g.innerHTML = `<span class="gbadge ${gradeClass(gradeFor(r))}">Grade ${gradeFor(r)}</span>`; }
     else if (g) g.remove();
     toggleSave();
   }
@@ -428,10 +548,14 @@ async function saveOrder() {
       const p = await DB.addPlace({ name: logState.newName.trim(), doordash_url: logState.link.trim(), tags: logState.newTags });
       placeId = p.id;
     }
-    await DB.addOrder({ place_id: placeId, person_name: logState.person, price: parseFloat(logState.price), weight_lbs: parseFloat(logState.weight) });
+    await DB.addOrder({
+      place_id: placeId, person_name: logState.person,
+      price: parseFloat(logState.price), weight_lbs: parseFloat(logState.weight),
+      note: logState.note.trim() || null, photo: logState.photo || null,
+    });
     await refresh();
     const savedName = DATA.places.find((p) => p.id === placeId)?.name || "order";
-    Object.assign(logState, { link: "", matchedId: null, newName: "", newTags: [], price: "", weight: "" });
+    Object.assign(logState, { link: "", matchedId: null, newName: "", newTags: [], price: "", weight: "", note: "", photo: null });
     toast(`Logged ${savedName} · ${(parseFloat(DATA.orders.at(-1)?.weight_lbs || 0)).toFixed(1)} lb`);
     go("detail", { placeId });
   } catch (e) {
@@ -468,14 +592,18 @@ function screenLibrary() {
 function placeCard(x, i) {
   const { place, s } = x;
   const stars = s.ratingCount ? `★ ${s.avgRating.toFixed(1)}` : "unrated";
-  return `<div class="place-card" data-place="${place.id}">
-    <div class="rank num">${i + 1}</div>
-    <div class="thumb">${place.tags[0] ? tagIcon(place.tags[0]) : ""}</div>
+  const cover = placeCoverPhoto(place.id, DATA.orders);
+  const rank = i + 1;
+  const tier = rank === 1 ? "gold" : rank === 2 ? "silver" : rank === 3 ? "bronze" : "";
+  const grade = gradeFor(s.ratio);
+  return `<div class="place-card ${tier ? `top t-${tier}` : ""}" data-place="${place.id}">
+    <div class="rank ${tier ? "" : "num"}">${tier ? I.medal : rank}</div>
+    <div class="thumb">${cover ? `<img src="${cover}" alt=""/>` : (place.tags[0] ? tagIcon(place.tags[0]) : "")}</div>
     <div class="body">
       <div class="nm">${esc(place.name)}</div>
       <div class="meta"><span>${place.tags[0] ? esc(tagLabel(place.tags[0])) : "—"}</span><i class="dot"></i><span>${s.orderCount} order${s.orderCount === 1 ? "" : "s"}</span><i class="dot"></i><span>${stars}</span></div>
     </div>
-    <div class="ratio"><span class="gbadge sm">${gradeFor(s.ratio) || "—"}</span><b class="num">${costPerLb(s.ratio)}</b></div>
+    <div class="ratio"><span class="gbadge sm ${gradeClass(grade)}">${grade || "—"}</span><b class="num">${costPerLb(s.ratio)}</b></div>
   </div>`;
 }
 
@@ -485,18 +613,20 @@ function screenDetail() {
   const s = computeStats(place, DATA.orders, DATA.ratings);
   const myRating = DATA.ratings.find((r) => r.place_id === place.id && r.person_name === currentUser)?.score || 0;
   const orders = [...s.orders].sort((a, b) => new Date(b.ordered_at) - new Date(a.ordered_at));
+  const cover = placeCoverPhoto(place.id, DATA.orders);
+  const grade = gradeFor(s.ratio);
 
   main.innerHTML = `
     <div class="titlebar"><button class="iconbtn" id="back">${I.back}</button><h2>Place</h2></div>
     <div class="detail-hero">
-      <div class="thumb">${place.tags[0] ? tagIcon(place.tags[0]) : ""}</div>
+      <div class="thumb">${cover ? `<img src="${cover}" alt=""/>` : (place.tags[0] ? tagIcon(place.tags[0]) : "")}</div>
       <h1>${esc(place.name)}</h1>
       <div class="taglist">${place.tags.map((t) => `<span class="chip readonly">${esc(tagLabel(t))}</span>`).join("")}</div>
       ${place.doordash_url ? `<a class="biglink" href="${esc(place.doordash_url)}" target="_blank" rel="noopener">Open on DoorDash ↗</a>` : ""}
     </div>
     <div class="statgrid">
       <div class="cell"><div class="v num">${s.ratio > 0 ? "$" + s.ratio.toFixed(2) : "—"}</div><div class="k">$ per lb</div></div>
-      <div class="cell"><div class="v">${gradeFor(s.ratio) || "—"}</div><div class="k">grade</div></div>
+      <div class="cell"><div class="v">${grade ? `<span class="gbadge ${gradeClass(grade)}">${grade}</span>` : "—"}</div><div class="k">grade</div></div>
       <div class="cell"><div class="v num">${s.orderCount}</div><div class="k">orders</div></div>
     </div>
     <h3 class="section-label">Rate this place</h3>
@@ -509,7 +639,12 @@ function screenDetail() {
       const r = Number(o.weight_lbs) > 0 ? Number(o.price) / Number(o.weight_lbs) : 0;
       return `<div class="order-row">
         <div class="ini">${esc(initials(o.person_name))}</div>
-        <div class="body"><b>${esc(o.person_name)}</b><div class="sub">${money(o.price)} · ${Number(o.weight_lbs).toFixed(1)} lb · ${relTime(o.ordered_at)}</div></div>
+        <div class="body">
+          <b>${esc(o.person_name)}</b>
+          <div class="sub">${money(o.price)} · ${Number(o.weight_lbs).toFixed(1)} lb · ${relTime(o.ordered_at)}</div>
+          ${o.note ? `<div class="note">${esc(o.note)}</div>` : ""}
+        </div>
+        ${o.photo ? `<button class="thumb-btn" data-photo="${o.photo}"><img src="${o.photo}" alt="Order photo"/></button>` : ""}
         <div class="r num">${r > 0 ? "$" + r.toFixed(2) : "—"}</div>
       </div>`;
     }).join("")}</div>`;
@@ -521,35 +656,71 @@ function screenDetail() {
     try { await DB.upsertRating({ place_id: place.id, person_name: currentUser, score }); await refresh(); toast(`Rated ${place.name} ${score}★`); screenDetail(); }
     catch (e) { console.error(e); toast("Couldn't save rating"); }
   });
+  main.querySelectorAll("[data-photo]").forEach((b) => b.onclick = () => openLightbox(b.dataset.photo));
+}
+
+function openLightbox(src) {
+  const el = document.createElement("div");
+  el.className = "photo-lightbox";
+  el.innerHTML = `<button class="close">${I.close}</button><img src="${src}" alt="Order photo"/>`;
+  el.onclick = (e) => { if (e.target === el || e.target.closest(".close")) el.remove(); };
+  document.body.appendChild(el);
 }
 
 function screenStats() {
-  const totalW = DATA.orders.reduce((s, o) => s + Number(o.weight_lbs), 0);
-  const totalP = DATA.orders.reduce((s, o) => s + Number(o.price), 0);
+  const orders = filterByRange(DATA.orders, statsUI.range);
+  const totalW = orders.reduce((s, o) => s + Number(o.weight_lbs), 0);
+  const totalP = orders.reduce((s, o) => s + Number(o.price), 0);
   const overall = totalW > 0 ? totalP / totalW : 0;
+  const placesTried = new Set(orders.map((o) => o.place_id)).size;
 
   const byPerson = {};
-  for (const o of DATA.orders) {
+  for (const o of orders) {
     const k = o.person_name; byPerson[k] = byPerson[k] || { w: 0, p: 0, n: 0 };
     byPerson[k].w += Number(o.weight_lbs); byPerson[k].p += Number(o.price); byPerson[k].n += 1;
   }
   const leaders = Object.entries(byPerson).map(([name, v]) => ({ name, ...v, ratio: v.w > 0 ? v.p / v.w : 0 }))
     .sort((a, b) => b.w - a.w);
 
+  const byTag = {};
+  for (const o of orders) {
+    const place = DATA.places.find((p) => p.id === o.place_id);
+    (place?.tags || []).forEach((t) => { byTag[t] = (byTag[t] || 0) + Number(o.weight_lbs); });
+  }
+  const topTags = Object.entries(byTag).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  const maxTag = topTags[0]?.[1] || 0;
+
+  const ranked = rankedPlaces({ places: DATA.places, orders, ratings: DATA.ratings });
+  const bestValue = ranked[0];
+  const weeks = buildWeeklyBuckets(orders, statsUI.range);
+
   main.innerHTML = `
     <div class="app-head"><h1>Stats</h1></div>
+    <div class="rangebar">
+      ${Object.keys(RANGE_LABEL).map((r) => `<button class="seg ${statsUI.range === r ? "on" : ""}" data-range="${r}">${RANGE_LABEL[r]}</button>`).join("")}
+    </div>
     <div class="bigstat"><div class="v num">${totalW.toFixed(0)}<small>lbs</small></div><div class="k">total feast logged</div></div>
     <div class="duo">
       <div class="cell"><div class="v num">${money(totalP).replace(".00", "")}</div><div class="k">total spent</div></div>
       <div class="cell"><div class="v num">${costPerLb(overall)}</div><div class="k">team rate</div></div>
     </div>
-    <h3 class="section-label">Who's feeding the team</h3>
+    <div class="quad">
+      <div class="cell"><div class="v num">${orders.length}</div><div class="k">orders logged</div></div>
+      <div class="cell"><div class="v num">${placesTried}</div><div class="k">places tried</div></div>
+    </div>
+    ${weeks.length > 1 ? `<h3 class="section-label">Pounds by week</h3><div class="chart">${chartSVG(weeks)}</div>` : ""}
+    ${bestValue ? `<h3 class="section-label section-gap">Best value ${RANGE_PERIOD_LABEL[statsUI.range]}</h3><div>${placeCard(bestValue, 0)}</div>` : ""}
+    ${topTags.length ? `<h3 class="section-label section-gap">Top cuisines</h3><div>${topTags.map(([t, w]) => tagBar(t, w, maxTag)).join("")}</div>` : ""}
+    <h3 class="section-label section-gap">Who's feeding the team</h3>
     <div>${leaders.map((l) => `
       <div class="lead-row">
         <div class="ini">${esc(initials(l.name))}</div>
         <div class="body"><b>${esc(l.name)}</b><div class="sub">${l.n} order${l.n === 1 ? "" : "s"} · ${costPerLb(l.ratio)}</div></div>
         <div class="amt"><b class="num">${l.w.toFixed(1)}</b><span>lbs</span></div>
       </div>`).join("") || emptyBlock("No stats yet", "Log an order to see team totals.")}</div>`;
+
+  main.querySelectorAll("[data-range]").forEach((b) => b.onclick = () => { statsUI.range = b.dataset.range; screenStats(); });
+  main.querySelectorAll("[data-place]").forEach((n) => n.onclick = () => go("detail", { placeId: n.dataset.place }));
 }
 
 function screenProfile() {

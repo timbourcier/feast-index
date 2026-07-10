@@ -63,7 +63,19 @@ Profiles live in the `people` table and are created **inside the app** (Profile 
 
 ## How the ranking works
 
-`$/lb rate = SUM(price) / SUM(weight)` across every order logged for a place — so a place's ranking gets more reliable the more the team orders from it. Lower is better (cheaper per pound of food). The Library shows the order count and a letter grade next to each place, from **S** (best value) down to **D**. Ratings are one score per person per place (re-rating overwrites your own).
+`$/lb rate = SUM(price) / SUM(weight)` across every order logged for a place — so a place's ranking gets more reliable the more the team orders from it. Lower is better (cheaper per pound of food). The Library shows the order count and a letter grade next to each place, color-coded (gold for S, green for A/A+, blue for B, bronze for C, gray for D), with the top 3 given a bigger, tinted card so the ranking actually reads as a ranking. Ratings are one score per person per place (re-rating overwrites your own).
+
+## Order notes & photos
+
+Since people often order more than once from the same place, each logged order can optionally include:
+- **A note** — what was actually in the order (e.g. "2x pad thai, spring rolls"), so old orders stay identifiable even once you've been to a place five times.
+- **A photo** — taken or picked at log time. It's resized and compressed in the browser (see `PHOTO_MAX_DIMENSION` / `PHOTO_QUALITY` in `config.js`) and stored as a JPEG data URL directly in the `orders.photo` column — no separate storage bucket to configure. A place's Library/Home thumbnail uses its most recently-photographed order as a cover image, falling back to the tag emoji if none exists yet.
+
+If you already have a live Supabase project from before this update, just re-run `schema.sql` — the `alter table` lines at the bottom add the new `note`/`photo` columns without touching existing data.
+
+## Stats
+
+The Stats tab has a 7 days / 30 days / 90 days / all time picker up top, and everything below it (totals, orders/places counts, the weekly pounds chart, top cuisines, best value pick, and the leaderboard) filters to that window.
 
 ## Notes / easy next steps
 
